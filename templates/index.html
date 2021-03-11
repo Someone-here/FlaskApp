@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+      <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>Shivansh</title>
+      <link href="{{ url_for('static', filename='css/styll.css') }}" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      {% include "header.html" %}
+      <iframe src="{{ url_for('static', filename='carousel.html') }}" title="carousel"></iframe>
+      <section>
+        <h1 id = "About">About</h1>
+        <p id = "Adec">Shivansh Gupta is an experienced General Photographer who is passionate about capturing unique moments with their signature style. Shivansh Gupta began their venture into photography in 2016 and soon became obsessed with the fundamentals that make a great photograph: lighting, balance, composition and use of space. Shivansh Gupta captures poignant and profound moments with a creative twist.</p>
+      </section>
+      <div class = "row">
+        <div class = "column">
+          <img src = "{{ url_for('static', filename='images/Bridge_Potrait.jpeg') }}" height="90%" width = "70%">
+        </div>
+        <div class = "column">
+          <div class = "ltext">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur obcaecati nulla ut error perferendis, vitae quos. Sint, laboriosam maiores? Saepe, tempora nihil.<br>
+            <a href = "photos.html" class = "check">CHECK IT OUT</a>
+          </div>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "column" style="z-index: 10;">
+          <div class = "rtext">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur obcaecati nulla ut error perferendis, vitae quos. Sint, laboriosam maiores? Saepe, tempora nihil.
+            <a href = "photos.html" class = "check" style="margin-left: 34rem;">CHECK IT OUT</a>
+          </div>
+        </div>
+        <div class = "column" style="z-index: 0;">
+          <img src="{{ url_for('static', filename='images/Painting_Potrait.jpeg') }}" alt="Painting" height="90%" width = "70%" style="margin-left: 3rem;">
+        </div>
+      </div>
+    <footer>
+      <p class = "foot1">Contact</p>
+      <p class = "foot2">Stay connected</p>
+      <p class = "coninfo">Shivansh Gupta<a href="https://www.facebook.com/Picss-and-artt-110084744165547" target="_blank" class="facebook"><em class="fa fa-facebook">&nbsp;&nbsp;Facebook</em></a><br>H-670 Harcharan nagar <a target="_blank" href="https://www.instagram.com/picss.and.art/" class="insta"><em class="fa fa-instagram">&nbsp;&nbsp;Instagram</em></a><br>Ludhiana, Punjab<a target="_blank" href="https://youtube.com" class="youtube"><em class="fa fa-youtube">&nbsp;&nbsp;Youtube</em></a></p>
+      <p class = "coninfo">Tel - +91 9814117680<br>Shivansh.gupta0808@gmail.com</p>
+    </footer>
+  </body> 
+</html>

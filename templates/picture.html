@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "icon" href = "{{ url_for('static', filename='logo.png') }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landscape.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <title>Photography</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="flexContainer">
+        <div class="landscape">
+            <img src="https://cdn.shopify.com/s/files/1/2486/4354/products/Peter-Lik-Haze-Framed-Recess-Mount_1800x.jpg?v=1608248383" alt="main_image" width="100%">
+        </div>
+        <div class="text">
+            <h1>{{name}}</h1>
+            <h2>{{price}}</h2>
+        </div>
+    </div>
+</body>
+</html>

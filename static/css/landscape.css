@@ -1,0 +1,24 @@
+@import url(//db.onlinewebfonts.com/c/40508c5e045b37ccaca5ccfec24d1479?family=DIN2014-Light);
+* {
+    box-sizing: border-box;
+    margin: 0rem;
+}
+.flexContainer {
+    display: flex;
+    margin-top: 0.75rem;
+}
+.landscape {
+    flex: 66.66%;
+    padding:  0px 15px;
+}
+.text {
+    flex: 33.33%;
+    font-family: 'Roboto';
+    font-weight: bold;
+    margin-left: 5rem;
+    margin-top: -1rem;
+}
+.text h1 {
+    color: #88744a;
+    font-size: 3rem;
+}
