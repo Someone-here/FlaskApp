@@ -1,11 +1,16 @@
-@import url(//db.onlinewebfonts.com/c/40508c5e045b37ccaca5ccfec24d1479?family=DIN2014-Light);
+@font-face {
+  font-family: "Din-2014";
+  src: url("../fonts/DIN2014-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 * {
   box-sizing: border-box;
   margin: 0rem;
 }
 body {
-  font-family: "DIN2014-Light";
+  font-family: "din-2014";
 }
 .flexContainer {
   display: flex;
