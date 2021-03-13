@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, url_for, request
 
 valid = {
-    "Haze": 100,
+    "Haze": "2,500",
     "bridge": 50,
     "something": 0.1,
     "shivansh": 1000

@@ -1,26 +1,41 @@
 @import url(//db.onlinewebfonts.com/c/40508c5e045b37ccaca5ccfec24d1479?family=DIN2014-Light);
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 * {
-    box-sizing: border-box;
-    margin: 0rem;
+  box-sizing: border-box;
+  margin: 0rem;
+}
+body {
+  font-family: "DIN2014-Light";
 }
 .flexContainer {
-    display: flex;
-    padding-top: 0.75rem;
-    background: #edecec;
+  display: flex;
+  padding-top: 0.75rem;
+  background: #edecec;
 }
 .landscape {
-    flex: 66.66%;
-    padding:  0px 15px;
+  flex: 75%;
+  padding: 0px 0.75rem;
 }
 .text {
-    flex: 33.33%;
-    font-family: 'Roboto';
-    font-weight: bold;
-    margin-left: 5rem;
-    margin-top: -1rem;
+  flex: 30%;
+  font-weight: bold;
+  margin-left: 3.5rem;
 }
 .text h1 {
-    color: #88744a;
-    font-size: 3rem;
-    font-family: 'DIN2014-Light';
+  color: #88744a;
+  font-size: 3rem;
+  margin-top: -0.5rem;
+  font-weight: 100;
+}
+.text h5 {
+  margin-top: 0.25rem;
+  color: #6c6a6a;
+  font-size: 0.6875rem;
+}
+.text h2 {
+  font-size: 2rem;
+  color: #88744a;
+  font-weight: 300;
+  margin: 20px 0 0;
+  font-weight: 400;
 }
