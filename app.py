@@ -24,4 +24,4 @@ def product(photo):
     else:
         return f"<h1>404</h1> \n {photo} was not found"
 
-app.run(host='0.0.0.0')
+app.run(debug=True)

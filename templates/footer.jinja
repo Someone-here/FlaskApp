@@ -1,0 +1,64 @@
+<footer>
+    <p class = "foot1">Contact</p>
+    <p class = "foot2">Stay connected</p>
+    <p class = "coninfo">Shivansh Gupta<a href="https://www.facebook.com/Picss-and-artt-110084744165547" target="_blank" class="facebook"><em class="fa fa-facebook">&nbsp;&nbsp;Facebook</em></a><br>H-670 Harcharan nagar <a target="_blank" href="https://www.instagram.com/picss.and.art/" class="insta"><em class="fa fa-instagram">&nbsp;&nbsp;Instagram</em></a><br>Ludhiana, Punjab<a target="_blank" href="https://youtube.com" class="youtube"><em class="fa fa-youtube">&nbsp;&nbsp;Youtube</em></a></p>
+    <p class = "coninfo">Tel - +91 9814117680<br>Shivansh.gupta0808@gmail.com</p>
+</footer>
+<style>
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+    footer {
+      background: url({{ url_for("static", filename="images/Footer.jpg") }})
+      no-repeat center center;
+      min-width: 100%;
+      margin-top: 5.75rem;
+      background-size: cover;
+      height: 25rem;
+    }
+
+    .foot1 {
+      font-size: 2.5rem;
+      font-family: "Calibri";
+      color: rgb(177, 159, 127);
+      padding-left: 4rem;
+      display: inline-block;
+      margin-bottom: 0rem;
+      margin-top: 5rem;
+    }
+
+    .foot2 {
+      display: inline;
+      color: rgb(177, 159, 127);
+      font-size: 1.5rem;
+      font-family: "Calibri";
+      margin-left: 15em;
+    }
+
+    .facebook {
+      margin-left: 23.75rem;
+    }
+
+    .facebook,
+    .insta,
+    .youtube,
+    .facebook:visited,
+    .insta:visited,
+    .youtube:visited {
+      color: white;
+    }
+
+    .insta {
+      margin-left: 20.25rem;
+    }
+
+    .youtube {
+      margin-left: 23.25rem;
+    }
+
+    .coninfo {
+      padding-left: 4em;
+      line-height: 28px;
+      font-family: "roboto";
+      margin-bottom: 2rem;
+      color: white;
+    }
+</style>

@@ -5,7 +5,8 @@
 }
 .flexContainer {
     display: flex;
-    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    background: #edecec;
 }
 .landscape {
     flex: 66.66%;
@@ -21,4 +22,5 @@
 .text h1 {
     color: #88744a;
     font-size: 3rem;
+    font-family: 'DIN2014-Light';
 }

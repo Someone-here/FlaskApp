@@ -12,7 +12,9 @@
     <title>Photography</title>
 </head>
 <body>
-    {% include "header.html" %}
+    {% with color="#EDECEC" %}
+    {% include "header.jinja" %}
+    {% endwith %}
     <div class="flexContainer">
         <div class="landscape">
             <img src="https://cdn.shopify.com/s/files/1/2486/4354/products/Peter-Lik-Haze-Framed-Recess-Mount_1800x.jpg?v=1608248383" alt="main_image" width="100%">
@@ -22,5 +24,6 @@
             <h2>{{price}}</h2>
         </div>
     </div>
+    {% include "footer.jinja" %}
 </body>
 </html>
