@@ -35,6 +35,7 @@ body {
 .text h5 {
   margin-top: 0.25rem;
   color: #6c6a6a;
+  font-weight: bolder;
   font-size: 0.6875rem;
 }
 .text h2 {
@@ -43,4 +44,41 @@ body {
   font-weight: 300;
   margin: 20px 0 0;
   font-weight: 400;
+}
+.text h3 {
+  margin-top: 30px;
+  border: 0px;
+  outline: 0;
+  border-bottom: solid 1px #d8d8d6;
+  padding: 0px 28px 5px 0px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #838383;
+  width: 100%;
+  max-width: 300px;
+}
+.ADD {
+  margin-top: 40px;
+  padding: 13px 20px;
+  color: #88744a;
+  width: 11.5em;
+  text-align: left;
+  border: solid 1px #88744a;
+  font-size: 0.9375em;
+  font-weight: 400;
+  transition: all 0.3s;
+}
+.ADD:hover {
+  background-color: #88744a;
+  color: white;
+}
+.arrow {
+  font-size: 1.5rem;
+  margin: -0.4rem 0.75rem;
+  position: absolute;
+  transition: all 0.3s;
+}
+.ADD:hover .arrow {
+  margin: -0.4rem 1rem;
 }
