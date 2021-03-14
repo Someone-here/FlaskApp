@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "icon" href = "{{ url_for('static', filename='logo.png') }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landscape.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <title>Photography</title>
+    <style>
+        .landscape {
+            flex: 75%;
+            {% if potrait %}
+            padding: 0px 5rem;
+            {% else %}
+            padding: 0px 1rem;
+            {% endif %}
+        }
+    </style>
+</head>
+<body>
+    {% with color="#EDECEC" %}
+    {% include "header.j2" %}
+    {% endwith %}
+    <div class="flexContainer">
+        <div class="landscape">
+            <img src="{{ url_for('static', filename=image) }}" alt="main_image" width="100%" height="92.5%">
+        </div>
+        <div class="text">
+            <h1>{{name}}</h1>
+            <h5><strong>LIMITED EDITION</strong></h5>
+            <h2>&#8377;{{price}}</h2>
+            <select class = "sel">
+            <option>Size: 100cm</option>
+            <option>Size: 150cm</option>
+            <option>Size: 200cm</option>
+            </select>
+            <h3 class="sel">Frame: Acrylic Mount</h3>
+            <button class="ADD">ADD TO CART <span class="arrow">&rarr;</span></button>
+        </div>
+    </div>
+    {% include "footer.j2" %}
+    <script defer>
+        const opt = document.querySelector(".sel");
+        const price = document.querySelector(".text h2");
+        opt.addEventListener("change", () => {
+            var output = "";
+            if (opt.value == "Size: 100cm") {
+                output = {{price}};
+            }
+            else if (opt.value == "Size: 150cm") {
+                output = {{cm150}};
+            }
+            else {
+                output = {{cm200}};
+            }
+            price.innerHTML = "&#8377;" + output
+        });
+    </script>
+</body>
+</html>
