@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href = "{{ url_for('static', filename='css/header.css') }}">
     <link rel = "icon" href = "{{ url_for('static', filename='logo.png') }}">
     <meta charset="UTF-8">
     <link href="{{ url_for('static', filename='css/photos.css') }}" rel="stylesheet">
@@ -12,7 +11,7 @@
     <title>Photography</title>
 </head>
 <body>
-    {% include "header.jinja" %}
+    {% include "header.j2" %}
     <nav>
         <div id="navigation">
         <ul>
@@ -38,6 +37,6 @@
         <div class = "pic"></div>
         <div class = "pic"></div>
     </div>
-    {% include "footer.jinja" %}
+    {% include "footer.j2" %}
 </body>
 </html>

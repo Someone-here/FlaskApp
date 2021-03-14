@@ -19,7 +19,7 @@ body {
 }
 .landscape {
   flex: 75%;
-  padding: 0px 0.75rem;
+  padding: 0px 5rem;
 }
 .text {
   flex: 30%;
@@ -39,6 +39,7 @@ body {
   font-size: 0.6875rem;
 }
 .text h2 {
+  transition: all 0.3s;
   font-size: 2rem;
   color: #88744a;
   font-weight: 300;
