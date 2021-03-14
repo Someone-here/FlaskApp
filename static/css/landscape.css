@@ -45,15 +45,15 @@ body {
   margin: 20px 0 0;
   font-weight: 400;
 }
-.text h3 {
+.sel {
   margin-top: 30px;
   border: 0px;
   outline: 0;
   border-bottom: solid 1px #d8d8d6;
+  background: #edecec;
   padding: 0px 28px 5px 0px;
   font-size: 1rem;
   text-transform: uppercase;
-  font-weight: 600;
   color: #838383;
   width: 100%;
   max-width: 300px;

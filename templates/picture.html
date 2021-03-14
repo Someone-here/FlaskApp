@@ -23,11 +23,23 @@
             <h1>{{name}}</h1>
             <h5><strong>LIMITED EDITION</strong></h5>
             <h2>&#8377;{{price}}</h2>
-            <h3>Size: 100cm</h3>
-            <h3>Frame: Acrylic Mount</h3>
+            <select class = "sel">
+            <option>Size: 100cm</option>
+            <option>Size: 150cm</option>
+            <option>Size: 200cm</option>
+            </select>
+            <h3 class="sel">Frame: Acrylic Mount</h3>
             <button class="ADD">ADD TO CART <span class="arrow">&rarr;</span></button>
         </div>
     </div>
     {% include "footer.jinja" %}
+    <script defer>
+        const opt = document.querySelector(".sel");
+        const price = document.querySelector(".text h2")
+        const option = document.querySelector(".sel option")
+        opt.addEventListener("change", () => {
+            price.innerHTML = "&#8377; 2000"
+        })
+    </script>
 </body>
 </html>
