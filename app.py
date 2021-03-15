@@ -21,15 +21,16 @@ def home():
 
 @app.route("/Gallery/")
 def gallery():
-    return render_template("photos.html")
+    return render_template("photos.jinja", images=db["images"])
 
 
 @app.route("/Gallery/<photo>/")
 def product(photo):
-    if photo in valid:
-        return render_template("picture.j2", name=photo, price=db["photography"]["flora"]["Grapes"]["price"]["cm100"], image=db["photography"]["flora"]["Grapes"]["path"], potrait=db["photography"]["flora"]["Grapes"]["potrait"], cm150=db["photography"]["flora"]["Grapes"]["price"]["cm150"], cm200=db["photography"]["flora"]["Grapes"]["price"]["cm200"])
-    else:
+    try:
+        return render_template("picture.jinja", name=photo, price=db["images"][photo]["cm100"], image=db["images"][photo]["path"], potrait=db["images"][photo]["potrait"], cm150=db["images"][photo]["cm150"], cm200=db["images"][photo]["cm200"])
+    except:
         return f"<h1>404</h1> \n {photo} was not found"
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)

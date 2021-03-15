@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/landscape.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/picture.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <title>Photography</title>
@@ -23,7 +22,7 @@
 </head>
 <body>
     {% with color="#EDECEC" %}
-    {% include "header.j2" %}
+    {% include "header.jinja" %}
     {% endwith %}
     <div class="flexContainer">
         <div class="landscape">
@@ -31,7 +30,7 @@
         </div>
         <div class="text">
             <h1>{{name}}</h1>
-            <h5><strong>LIMITED EDITION</strong></h5>
+            <h5><strong>STANDARD EDITION</strong></h5>
             <h2>&#8377;{{price}}</h2>
             <select class = "sel">
             <option>Size: 100cm</option>
@@ -42,7 +41,7 @@
             <button class="ADD">ADD TO CART <span class="arrow">&rarr;</span></button>
         </div>
     </div>
-    {% include "footer.j2" %}
+    {% include "footer.jinja" %}
     <script defer>
         const opt = document.querySelector(".sel");
         const price = document.querySelector(".text h2");

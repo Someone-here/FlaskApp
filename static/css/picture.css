@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "Din-2014";
+  src: url("../fonts/DIN2014-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+* {
+  box-sizing: border-box;
+  margin: 0rem;
+}
+body {
+  font-family: "din-2014";
+}
+.flexContainer {
+  display: flex;
+  padding-top: 0.75rem;
+  background: #edecec;
+}
+.landscape {
+  flex: 75%;
+  padding: 0px 5rem;
+}
+.text {
+  flex: 30%;
+  font-weight: bold;
+  margin-left: 3.5rem;
+}
+.text h1 {
+  color: #88744a;
+  font-size: 3rem;
+  margin-top: -0.5rem;
+  font-weight: 100;
+}
+.text h5 {
+  margin-top: 0.25rem;
+  color: #6c6a6a;
+  font-weight: bolder;
+  font-size: 0.6875rem;
+}
+.text h2 {
+  transition: all 0.3s;
+  font-size: 2rem;
+  color: #88744a;
+  font-weight: 300;
+  margin: 20px 0 0;
+  font-weight: 400;
+}
+.sel {
+  margin-top: 30px;
+  border: 0px;
+  outline: 0;
+  border-bottom: solid 1px #d8d8d6;
+  background: #edecec;
+  padding: 0px 28px 5px 0px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #838383;
+  width: 100%;
+  max-width: 300px;
+}
+.ADD {
+  margin-top: 40px;
+  padding: 13px 20px;
+  color: #88744a;
+  width: 11.5em;
+  text-align: left;
+  border: solid 1px #88744a;
+  font-size: 0.9375em;
+  font-weight: 400;
+  transition: all 0.3s;
+}
+.ADD:hover {
+  background-color: #88744a;
+  color: white;
+}
+.arrow {
+  font-size: 1.5rem;
+  margin: -0.4rem 0.75rem;
+  position: absolute;
+  transition: all 0.3s;
+}
+.ADD:hover .arrow {
+  margin: -0.4rem 1rem;
+}
