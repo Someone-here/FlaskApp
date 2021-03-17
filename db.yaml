@@ -20,17 +20,4 @@ images:
     cm100: 1500
     cm150: 2000
     cm200: 2200
-  GhiteFlower:
-    path: "images/Portfolio/photography/flora/WhiteFlower.jpg"
-    potrait: False
-    type: Flora
-    cm100: 1500
-    cm150: 2000
-    cm200: 2200
-  DhiteFlower:
-    path: "images/Portfolio/photography/flora/WhiteFlower.jpg"
-    potrait: False
-    type: Flora
-    cm100: 1500
-    cm150: 2000
-    cm200: 2200
+  
