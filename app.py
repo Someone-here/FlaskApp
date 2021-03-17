@@ -29,7 +29,7 @@ def product(photo):
     try:
         return render_template("picture.jinja", images=db["images"][photo], name=photo)
     except:
-        return render_template("404.html")
+        return render_template("404.jinja")
 
 if __name__ == "__main__":
     app.run(debug=True)
