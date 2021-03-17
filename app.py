@@ -27,10 +27,9 @@ def gallery():
 @app.route("/Gallery/<photo>/")
 def product(photo):
     try:
-        return render_template("picture.jinja", name=photo, price=db["images"][photo]["cm100"], image=db["images"][photo]["path"], potrait=db["images"][photo]["potrait"], cm150=db["images"][photo]["cm150"], cm200=db["images"][photo]["cm200"])
+        return render_template("picture.jinja", images=db["images"][photo], name=photo)
     except:
-        return f"<h1>404</h1> \n {photo} was not found"
-
+        return render_template("404.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

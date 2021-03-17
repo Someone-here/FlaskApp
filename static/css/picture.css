@@ -83,3 +83,7 @@ body {
 .ADD:hover .arrow {
   margin: -0.4rem 1rem;
 }
+.description {
+  margin-top: 2rem;
+  padding-right: 0.5rem;
+}
