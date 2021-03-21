@@ -21,6 +21,7 @@ nav {
   border-bottom: 0px;
   border-top: 0px;
   margin: 0rem 1.5rem;
+  text-align: center;
 }
 
 #navigation {
@@ -30,25 +31,18 @@ nav {
   border-bottom: 1px solid gray;
 }
 
-nav a,
-nav a:visited {
-  text-decoration: none;
-  color: black;
-}
-
-nav a:hover {
+nav ul li:hover {
   color: darkgray;
   cursor: pointer;
 }
 
 nav ul li {
   list-style-type: none;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 2rem;
+  margin-right: 4rem;
   font-size: 1.5rem;
+  display: inline-block;
   font-family: monospace;
+  cursor: pointer;
 }
 
 h4,

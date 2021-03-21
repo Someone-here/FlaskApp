@@ -2,16 +2,18 @@ from flask import Flask, redirect, render_template, url_for, request
 import yaml
 
 with open("db.yaml", "r") as y:
-    db = yaml.load(y)
+    db = yaml.load(y, yaml.FullLoader)
 
-valid = {
-    "Haze": "2,500",
-    "bridge": 50,
-    "something": 0.1,
-    "shivansh": 1000
-}
+images = db["images"]
 
 app = Flask(__name__)
+
+types = []
+types.append("All")
+for i in images:
+    if not images[i]["type"] in types:
+        types.append(images[i]["type"])
+        print(types)
 
 
 @app.route("/")
@@ -21,15 +23,21 @@ def home():
 
 @app.route("/Gallery/")
 def gallery():
-    return render_template("photos.jinja", images=db["images"])
+    return render_template("photos.html", images=images, types=types)
 
 
 @app.route("/Gallery/<photo>/")
 def product(photo):
     try:
-        return render_template("picture.jinja", images=db["images"][photo], name=photo)
+        return render_template("picture.jinja", images=images[photo], name=photo)
     except:
         return render_template("404.jinja")
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.jinja'), 404
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel = "icon" href = "{{ url_for('static', filename='logo.png') }}">
     <meta charset="UTF-8">
     <link href="{{ url_for('static', filename='css/photos.css') }}" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <title>Photography</title>
+    <style>
+        
+    </style>
 </head>
 <body>
     {% include "header.jinja" %}
     <nav>
         <div id="navigation">
         <ul>
-            <li><a href = "">Potrait</a></li>
-            <li><a href = "">Landscape</a></li>
+            {% for i in types %}
+                <li id="{{i}}">{{i}}</li>
+            {% endfor %}
         </ul>
         </div>
     </nav>
     <div class = "container">
         {% for i in images %}
-            <div class = "pic">
+            <div class = "pic {{images[i]['type']}}">
                 <div class="wrapper">
                     <a href="{{ url_for('product', photo=i) }}">
                     <img src = "{{ url_for('static', filename=images[i]['path']) }}" alt = "photo">
@@ -36,4 +39,29 @@
     </div>
     {% include "footer.jinja" %}
 </body>
+<script defer>
+    const nav = document.querySelectorAll("#navigation li");
+    const pic = document.querySelectorAll(".pic");
+    const all = document.querySelector("#All");
+
+    nav.forEach((i) => {
+        i.addEventListener(("click"), () => {
+            pic.forEach((j) => {
+                var category = $(j).attr("class").split(" ")[1];
+                if (category != i.innerHTML) {
+                    j.style.display = "none";
+                }
+                else {
+                    j.style.display = "flex";
+                }
+            });
+        });
+    });
+
+    all.addEventListener("click", () => {
+        pic.forEach((o) => {
+            o.style.display = "flex";
+        });
+    });
+</script>
 </html>

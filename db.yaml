@@ -1,29 +1,29 @@
 images:
   Grapes:
     path: "images/Portfolio/photography/flora/Grapes.PNG"
-    potrait: True
-    type: Flora
+    potrait: "true"
+    type: Wildlife
     cm100: 2500
     cm150: 3000
     cm200: 3500
     description: 
-      Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description. This is not on every webpage. It is in the database. This picture is Grape.
+      "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description. This is not on every webpage. It is in the database. This picture is Grape."
   WaterLily:
     path: "images/Portfolio/photography/flora/WaterLily.jpg"
-    potrait: False
+    potrait: "false"
     type: Flora
     cm100: 3500
     cm150: 4000
     cm200: 4300
     description: 
-      Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WaterLily.
+      "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WaterLily."
   WhiteFlower:
     path: "images/Portfolio/photography/flora/WhiteFlower.jpg"
-    potrait: False
-    type: Flora
+    potrait: "false"
+    type: Wildlife
     cm100: 1500
     cm150: 2000
     cm200: 2200
     description: 
-      Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WhiteFlower.
+      "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WhiteFlower."
   
