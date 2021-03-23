@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, url_for, request, jsonify
 import yaml
+from requests import get
 
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)
@@ -18,12 +19,11 @@ for i in images:
 
 @app.route("/")
 def home():
+    ip = request.environ['HTTP_X_FORWARDED_FOR']
+    print(type(ip))
+    currency = get(f'https://ipapi.co/{ip}/currency/').text
+    print(currency)
     return render_template("index.html")
-
-
-@app.route("/ip")
-def get_my_ip():
-    return request.environ['HTTP_X_FORWARDED_FOR']
 
 
 @app.route("/Gallery/")
