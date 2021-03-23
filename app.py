@@ -21,6 +21,11 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/ip")
+def ip():
+    return request.remote_addr
+
+
 @app.route("/Gallery/")
 def gallery():
     return render_template("photos.html", images=images, types=types)
