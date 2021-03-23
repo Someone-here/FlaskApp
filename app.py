@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for, request
+from flask import Flask, redirect, render_template, url_for, request, jsonify
 import yaml
 
 with open("db.yaml", "r") as y:
@@ -22,8 +22,8 @@ def home():
 
 
 @app.route("/ip")
-def ip():
-    return request.remote_addr
+def get_my_ip():
+    return jsonify({'ip': request.remote_addr}), 200
 
 
 @app.route("/Gallery/")
