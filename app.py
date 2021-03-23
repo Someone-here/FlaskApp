@@ -23,7 +23,7 @@ def home():
 
 @app.route("/ip")
 def get_my_ip():
-    return rrequest.environ['HTTP_X_FORWARDED_FOR']
+    return request.environ['HTTP_X_FORWARDED_FOR']
 
 
 @app.route("/Gallery/")
