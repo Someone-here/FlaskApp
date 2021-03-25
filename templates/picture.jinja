@@ -29,7 +29,7 @@
         <div class="text">
             <h1>{{name}}</h1>
             <h5><strong>STANDARD EDITION</strong></h5>
-            <h2>&#8377;{{images['cm100']}}</h2>
+            <h2>{{symbol}} {{(images['cm100'] * currency)|round(2, "ceil")}}</h2>
             <select class = "sel">
             <option>Size: 100cm</option>
             <option>Size: 150cm</option>

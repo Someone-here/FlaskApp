@@ -7,8 +7,8 @@ from forex_python.converter import CurrencyRates
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)
 
-with open("Currency.json", "r") as f:
-    f = json.loads(f.read(), encoding="utf-8")
+with open("Currency.json", "r", encoding="utf-8") as f:
+    f = json.loads(f.read())
 
 images = db["images"]
 app = Flask(__name__)
@@ -31,15 +31,17 @@ def home():
 def gallery():
     ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
     currency = get(f'https://ipapi.co/{ip}/currency/').text
-    currency = c.get_rate('INR', currency)
-    print(currency)
-    return render_template("photos.html", images=images, types=types, currency=currency)
+    curr = c.get_rate('INR', currency)
+    return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
 
 
 @app.route("/Gallery/<photo>/")
 def product(photo):
+    ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
+    currency = get(f'https://ipapi.co/{ip}/currency/').text
+    curr = c.get_rate('INR', currency)
     try:
-        return render_template("picture.jinja", images=images[photo], name=photo)
+        return render_template("picture.jinja", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
     except:
         return render_template("404.jinja")
 
