@@ -32,7 +32,7 @@
                     </a>
                     <h4>{{i}}</h4>
                     <h3>Standard Edition</h3>
-                    <h3 class = "price">&#8377;{{images[i]["cm100"]}}</h3>
+                    <h3 class = "price">&#8377;{{currency * images[i]["cm100"]|int}}</h3>
                 </div>
             </div>
         {% endfor %}   

@@ -1,13 +1,18 @@
 from flask import Flask, redirect, render_template, url_for, request, jsonify
 import yaml
+import json
 from requests import get
+from forex_python.converter import CurrencyRates
 
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)
 
-images = db["images"]
+with open("Currency.json", "r") as f:
+    f = json.loads(f.read(), encoding="utf-8")
 
+images = db["images"]
 app = Flask(__name__)
+c = CurrencyRates()
 
 types = []
 types.append("All")
@@ -19,16 +24,16 @@ for i in images:
 
 @app.route("/")
 def home():
-    ip = request.environ['HTTP_X_FORWARDED_FOR']
-    print(type(ip))
-    currency = get(f'https://ipapi.co/{ip}/currency/').text
-    print(currency)
     return render_template("index.html")
 
 
 @app.route("/Gallery/")
 def gallery():
-    return render_template("photos.html", images=images, types=types)
+    ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
+    currency = get(f'https://ipapi.co/{ip}/currency/').text
+    currency = c.get_rate('INR', currency)
+    print(currency)
+    return render_template("photos.html", images=images, types=types, currency=currency)
 
 
 @app.route("/Gallery/<photo>/")
