@@ -1,8 +1,13 @@
 from flask import Flask, redirect, render_template, url_for, request, jsonify
+import stripe
 import yaml
 import json
 from requests import get
 from forex_python.converter import CurrencyRates
+
+name = ""
+price = 0
+stripe.api_key = "sk_test_51IXQeCSJIrO4r1c2upI16Js4ULKmplnErq7W77lEEFxPRDEZqPEgMoz8kFk26Et74gu4LRb7DjE5NOFc8xj5nEkM00hD099iy4"
 
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)

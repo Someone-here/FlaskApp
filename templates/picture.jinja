@@ -36,7 +36,7 @@
             <option>Size: 200cm</option>
             </select>
             <h3 class="sel">Frame: Acrylic Mount</h3>
-            <button class="ADD">ADD TO CART <span class="arrow">&rarr;</span></button>
+            <button class="ADD">BUY NOW <span class="arrow">&rarr;</span></button>
             <div class="description">
                 {{ images["description"] }}
             </div>
@@ -49,15 +49,15 @@
         opt.addEventListener("change", () => {
             var output = "";
             if (opt.value == "Size: 100cm") {
-                output = {{images["cm100"]}};
+                output = {{(images["cm100"] * currency)|round(2, "ceil")}};
             }
             else if (opt.value == "Size: 150cm") {
-                output = {{images["cm150"]}};
+                output = {{(images["cm150"] * currency)|round(2, "ceil")}};
             }
             else {
-                output = {{images["cm200"]}};
+                output = {{(images["cm200"] * currency)|round(2, "ceil")}};
             }
-            price.innerHTML = "&#8377;" + output
+            price.innerHTML = "{{symbol}}" + " "+ output
         });
     </script>
 </body>
