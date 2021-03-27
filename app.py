@@ -7,6 +7,7 @@ from forex_python.converter import CurrencyRates
 
 name = ""
 price = 0
+currency = "USD"
 stripe.api_key = "sk_test_51IXQeCSJIrO4r1c2upI16Js4ULKmplnErq7W77lEEFxPRDEZqPEgMoz8kFk26Et74gu4LRb7DjE5NOFc8xj5nEkM00hD099iy4"
 
 with open("db.yaml", "r") as y:
@@ -34,10 +35,46 @@ def home():
 
 @app.route("/Gallery/")
 def gallery():
+    global currency
     ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
     currency = get(f'https://ipapi.co/{ip}/currency/').text
     curr = c.get_rate('INR', currency)
     return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
+
+
+@app.route("/info", methods=["POST"])
+def info():
+    global name
+    global price
+    name = request.get_json().get('name')
+    price = request.get_json().get('price')
+    return ""
+
+
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    global name
+    global price
+    global curreny
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        shipping_address_collection={"allowed_countries": ["IN", "US"]},
+        line_items=[{
+            'price_data': {
+                'currency': currency,
+                'product_data': {
+                    'name': name,
+                    'images': ['https://i.imgur.com/MrGY5EL.jpg'],
+                },
+                'unit_amount': int(float(price) * 100),
+            },
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url='https://example.com/success',
+        cancel_url='https://example.com/fail',
+    )
+    return jsonify(id=session.id)
 
 
 @app.route("/Gallery/<photo>/")
@@ -46,7 +83,7 @@ def product(photo):
     currency = get(f'https://ipapi.co/{ip}/currency/').text
     curr = c.get_rate('INR', currency)
     try:
-        return render_template("picture.jinja", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
+        return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
     except:
         return render_template("404.jinja")
 
@@ -54,6 +91,11 @@ def product(photo):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.jinja'), 404
+
+
+@app.errorhandler(405)
+def page_not_found(e):
+    return render_template('404.jinja'), 405
 
 
 if __name__ == "__main__":

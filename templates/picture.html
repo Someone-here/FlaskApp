@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "icon" href = "{{ url_for('static', filename='logo.png') }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/picture.css') }}">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Photography</title>
+    <style>
+        .landscape {
+            flex: 75%;
+            {% if images['potrait'] == "true" %}
+            padding: 0px 5rem;
+            {% else %}
+            padding: 0px 1rem;
+            {% endif %}
+        }
+    </style>
+</head>
+<body>
+    {% with color="#EDECEC" %}
+    {% include "header.jinja" %}
+    {% endwith %}
+    <div class="flexContainer">
+        <div class="landscape">
+            <img src="{{ url_for('static', filename=images['path']) }}" alt="main_image" width="100%" height="92.5%">
+        </div>
+        <div class="text">
+            <h1>{{name}}</h1>
+            <h5><strong>STANDARD EDITION</strong></h5>
+            <h2>{{symbol}} {{(images['cm100'] * currency)|round(2, "ceil")}}</h2>
+            <select class = "sel">
+            <option>Size: 100cm</option>
+            <option>Size: 150cm</option>
+            <option>Size: 200cm</option>
+            </select>
+            <h3 class="sel">Frame: Acrylic Mount</h3>
+            <button class="ADD">BUY NOW <span class="arrow">&rarr;</span></button>
+            <div class="description">
+                {{ images["description"] }}
+            </div>
+        </div>
+    </div>
+    {% include "footer.jinja" %}
+    <script>
+      const opt = document.querySelector(".sel");
+      const price = document.querySelector(".text h2");
+      var output = "{{(images['cm100'] * currency)|round(2, 'ceil')}}";
+      opt.addEventListener("change", () => {
+          if (opt.value == "Size: 100cm") {
+              output = "{{(images['cm100'] * currency)|round(2, 'ceil')}}";
+          }
+          else if (opt.value == "Size: 150cm") {
+              output = "{{(images['cm150'] * currency)|round(2, 'ceil')}}";
+          }
+          else {
+              output = "{{(images['cm200'] * currency)|round(2, 'ceil')}}";
+          }
+          price.innerHTML = "{{symbol}}" + " " + output
+        });
+    </script>
+    <script>
+      console.log(output);  
+    </script>
+    <script>
+      console.log("sending")
+      $.ajax({
+          type: "POST",
+          contentType: "application/json; charset=utf-8",
+          url: "/info",
+          data: JSON.stringify({"name": "{{name}}", "price": output}),
+          dataType: "json"
+        });
+    </script>
+</body>
+<script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable API key
+    var stripe = Stripe('pk_test_51IXQeCSJIrO4r1c2FovoVvtCyGSldD9tXYRPXEN029iCIrklXlpWydC97Tf3M06MG5KFtKtIIQs7PlB7M2TnaXR100tnaISeNM');
+    var checkoutButton = document.querySelector(".ADD")
+
+    checkoutButton.addEventListener('click', function() {
+      // Create a new Checkout Session using the server-side endpoint you
+      // created in step 3.
+      fetch('/create-checkout-session', {
+        method: 'POST',
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(session) {
+        return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(function(result) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, you should display the localized error message to your
+        // customer using `error.message`.
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</html>
