@@ -41,6 +41,9 @@ def gallery():
     curr = c.get_rate('INR', currency)
     return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
 
+@app.route("/test")
+def test():
+    return url_for("static", filename="images/bg1.jpg", _external=True)
 
 @app.route("/info", methods=["POST"])
 def info():
@@ -71,8 +74,8 @@ def create_checkout_session():
             'quantity': 1,
         }],
         mode='payment',
-        success_url='https://example.com/success',
-        cancel_url='https://example.com/fail',
+        success_url=url_for("gallery", _external=True),
+        cancel_url=url_for("gallery", _external=True),
     )
     return jsonify(id=session.id)
 
