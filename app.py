@@ -41,9 +41,6 @@ def gallery():
     curr = c.get_rate('INR', currency)
     return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
 
-@app.route("/test")
-def test():
-    return url_for("static", filename="images/bg1.jpg", _external=True)
 
 @app.route("/info", methods=["POST"])
 def info():
@@ -67,7 +64,7 @@ def create_checkout_session():
                 'currency': currency,
                 'product_data': {
                     'name': name,
-                    'images': ['https://i.imgur.com/MrGY5EL.jpg'],
+                    'images': [url_for("static", filename="images/bg1.jpg", _external = True)],
                 },
                 'unit_amount': int(float(price) * 100),
             },
