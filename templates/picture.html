@@ -61,18 +61,15 @@
           }
           price.innerHTML = "{{symbol}}" + " " + output
         });
-    </script>
-    <script>
-      console.log(output);  
-    </script>
-    <script>
-      console.log("sending")
-      $.ajax({
-          type: "POST",
-          contentType: "application/json; charset=utf-8",
-          url: "/info",
-          data: JSON.stringify({"name": "{{name}}", "price": output}),
-          dataType: "json"
+        const buy = document.querySelector(".ADD");
+        buy.addEventListener("click", () => {
+          $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/info",
+            data: JSON.stringify({"name": "{{name}}", "price": output}),
+            dataType: "json"
+          });
         });
     </script>
 </body>
