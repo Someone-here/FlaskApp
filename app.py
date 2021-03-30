@@ -55,7 +55,7 @@ def info():
 def create_checkout_session():
     global name
     global price
-    global curreny
+    global currency
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         payment_intent_data={
