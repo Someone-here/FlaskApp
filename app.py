@@ -58,13 +58,21 @@ def create_checkout_session():
     global curreny
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
-        shipping_address_collection={"allowed_countries": ["IN", "US"]},
+        payment_intent_data={
+            "shipping": {
+                "name": "John",
+                "address": {
+                    "line1": "YO"
+                },
+                "phone": 1234567890
+            }
+        },
         line_items=[{
             'price_data': {
                 'currency': currency,
                 'product_data': {
                     'name': name,
-                    'images': [url_for("static", filename="images/bg1.jpg", _external = True)],
+                    'images': [url_for("static", filename="images/bg1.jpg", _external=True)],
                 },
                 'unit_amount': int(float(price) * 100),
             },
