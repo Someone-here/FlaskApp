@@ -59,16 +59,19 @@ body {
   width: 100%;
   max-width: 300px;
 }
-.ADD {
+.ADD,
+.ADD:visited {
   margin-top: 40px;
   padding: 13px 20px;
   color: #88744a;
+  display: inline-block;
   width: 11.5em;
   text-align: left;
   border: solid 1px #88744a;
   font-size: 0.9375em;
   font-weight: 400;
   transition: all 0.3s;
+  text-decoration: none;
 }
 .ADD:hover {
   background-color: #88744a;
@@ -77,6 +80,7 @@ body {
 .arrow {
   font-size: 1.5rem;
   margin: -0.45rem 1.5rem;
+  font-family: sans-serif;
   position: absolute;
   transition: all 0.3s;
 }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/picture.css') }}">
-    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Photography</title>
     <style>
@@ -38,7 +38,7 @@
             <option>Size: 200cm</option>
             </select>
             <h3 class="sel">Frame: Acrylic Mount</h3>
-            <button class="ADD">BUY NOW <span class="arrow">&rarr;</span></button>
+            <a class="ADD" href="/customer"><strong>BUY NOW </strong><span class="arrow">&rarr;</span></a>
             <div class="description">
                 {{ images["description"] }}
             </div>
@@ -73,34 +73,4 @@
         });
     </script>
 </body>
-<script type="text/javascript">
-    // Create an instance of the Stripe object with your publishable API key
-    var stripe = Stripe('pk_test_51IXQeCSJIrO4r1c2FovoVvtCyGSldD9tXYRPXEN029iCIrklXlpWydC97Tf3M06MG5KFtKtIIQs7PlB7M2TnaXR100tnaISeNM');
-    var checkoutButton = document.querySelector(".ADD")
-
-    checkoutButton.addEventListener('click', function() {
-      // Create a new Checkout Session using the server-side endpoint you
-      // created in step 3.
-      fetch('/create-checkout-session', {
-        method: 'POST',
-      })
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(session) {
-        return stripe.redirectToCheckout({ sessionId: session.id });
-      })
-      .then(function(result) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, you should display the localized error message to your
-        // customer using `error.message`.
-        if (result.error) {
-          alert(result.error.message);
-        }
-      })
-      .catch(function(error) {
-        console.error('Error:', error);
-      });
-    });
-  </script>
 </html>

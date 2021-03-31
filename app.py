@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for, request, jsonify
+from flask import Flask, redirect, render_template, url_for, request, jsonify, abort
 import stripe
 import yaml
 import json
@@ -25,7 +25,6 @@ types.append("All")
 for i in images:
     if not images[i]["type"] in types:
         types.append(images[i]["type"])
-        print(types)
 
 
 @app.route("/")
@@ -44,27 +43,42 @@ def gallery():
 
 @app.route("/info", methods=["POST"])
 def info():
-    global name
-    global price
+    global name, price
     name = request.get_json().get('name')
     price = request.get_json().get('price')
     return ""
 
 
+cus_name, phone, address = "", "", ""
+
+
+@app.route("/customer", methods=["GET", "POST"])
+def customer():
+    if request.method == "GET":
+        if "Referer" in request.headers:
+            return render_template("info.html")
+        else:
+            abort(404)
+    else:
+        global cus_name, phone, address
+        cus_name, phone, address = request.get_json().get(
+            'cus_name'), request.get_json().get("phone"), request.get_json().get("address")
+        print(phone)
+        return ""
+
+
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
-    global name
-    global price
-    global currency
+    global name, price, currency, cus_name, address, phone
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         payment_intent_data={
             "shipping": {
-                "name": "John",
+                "name": cus_name,
                 "address": {
-                    "line1": "YO"
+                    "line1": address
                 },
-                "phone": 1234567890
+                "phone": phone
             }
         },
         line_items=[{
