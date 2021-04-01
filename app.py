@@ -60,7 +60,7 @@ def customer():
         else:
             abort(404)
     else:
-        global cus_name, phone, address
+        global cus_name, phone, address1, address2, postal, city, state, country
         cus_name, phone, address1, address2, city, state, country, postal = request.get_json().get('cus_name'), request.get_json().get("phone"), request.get_json().get(
             "address1"), request.get_json().get("address2"), request.get_json().get("city"), request.get_json().get("state"), request.get_json().get("country"), request.get_json().get("postal")
         print(phone)
@@ -69,7 +69,7 @@ def customer():
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
-    global name, price, currency, cus_name, address, phone
+    global name, price, currency, cus_name, address1, phone, address2, city, state, postal, country
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         payment_intent_data={
@@ -78,7 +78,10 @@ def create_checkout_session():
                 "address": {
                     "line1": address1,
                     "line2": address2,
-
+                    "city": city,
+                    "postal_code": postal,
+                    "country": country,
+                    "state": state
                 },
                 "phone": phone
             }
