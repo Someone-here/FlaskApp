@@ -49,7 +49,7 @@ def info():
     return ""
 
 
-cus_name, phone, address = "", "", ""
+cus_name, phone, address1, address2, city, state, country, postal = "", "", "", "", "", "", ""
 
 
 @app.route("/customer", methods=["GET", "POST"])
@@ -61,8 +61,8 @@ def customer():
             abort(404)
     else:
         global cus_name, phone, address
-        cus_name, phone, address = request.get_json().get(
-            'cus_name'), request.get_json().get("phone"), request.get_json().get("address")
+        cus_name, phone, address1, address2, city, state, country, postal = request.get_json().get('cus_name'), request.get_json().get("phone"), request.get_json().get(
+            "address1"), request.get_json().get("address2"), request.get_json().get("city"), request.get_json().get("state"), request.get_json().get("country"), request.get_json().get("postal")
         print(phone)
         return ""
 
@@ -76,7 +76,9 @@ def create_checkout_session():
             "shipping": {
                 "name": cus_name,
                 "address": {
-                    "line1": address
+                    "line1": address1,
+                    "line2": address2,
+
                 },
                 "phone": phone
             }

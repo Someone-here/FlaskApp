@@ -18,9 +18,17 @@
         <label>Name: </label>
         <input type="text" name="name" /><br />
         <label>Shippping address: </label>
-        <input type="text" name="Address" /><br />
+        <input type="text" name="Address1" /><br />
+        <label>Address line 2: </label>
+        <input type="text" name="Address2" /><br />
         <label>Phone no: </label>
         <input type="tel" name="phone" /><br />
+        <label>City: </label>
+        <input type="text" name="city" /><br />
+        <label>State: </label>
+        <input type="text" name="state" /><br />
+        <label>Country: </label>
+        <input type="text" name="country" /><br />
         <input type="submit" value="submit" />
     {% include "footer.jinja" %}
 </body>
@@ -28,16 +36,28 @@
   const submit = document.querySelector("input[type=submit]");
   submit.addEventListener("click", () => {
     var cus_name = document.querySelector("input[name=name]").value;
-    var address = document.querySelector("input[name=Address]").value;
+    var address1 = document.querySelector("input[name=Address1]").value;
+    var address2 = document.querySelector("input[name=Address2]")
     var phone = document.querySelector("input[type=tel]").value;
+    var city = document.querySelector("input[name=city]").value;
+    var state = document.querySelector("input[name=state]").value;
+    var country = document.querySelector("input[name=country]").value;
     $.ajax({
       type: "POST",
       contentType: "application/json; charset=utf-8",
       url: "/customer",
-      data: JSON.stringify({"cus_name": cus_name, "address": address, "phone": phone}),
+      data: JSON.stringify({
+        "cus_name": cus_name, 
+        "address1": address1,
+        "address2": address2, 
+        "phone": phone,
+        "city": city,
+        "state": state,
+        "country": country
+      }),
       dataType: "json"
     });
-  })
+  });
 </script>
 <script type="text/javascript">
     // Create an instance of the Stripe object with your publishable API key
