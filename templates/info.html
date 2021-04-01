@@ -25,6 +25,8 @@
         <input type="tel" name="phone" /><br />
         <label>City: </label>
         <input type="text" name="city" /><br />
+        <label>Pincode: </label>
+        <input type="text" name="postal" /><br />
         <label>State: </label>
         <input type="text" name="state" /><br />
         <label>Country: </label>
@@ -42,6 +44,7 @@
     var city = document.querySelector("input[name=city]").value;
     var state = document.querySelector("input[name=state]").value;
     var country = document.querySelector("input[name=country]").value;
+    var postal = document.querySelector("input[name=postal]").value;
     $.ajax({
       type: "POST",
       contentType: "application/json; charset=utf-8",
@@ -49,7 +52,8 @@
       data: JSON.stringify({
         "cus_name": cus_name, 
         "address1": address1,
-        "address2": address2, 
+        "address2": address2,
+        "postal": postal,
         "phone": phone,
         "city": city,
         "state": state,

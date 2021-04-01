@@ -49,7 +49,7 @@ def info():
     return ""
 
 
-cus_name, phone, address1, address2, city, state, country, postal = "", "", "", "", "", "", ""
+cus_name, phone, address1, address2, city, state, country, postal = "", "", "", "", "", "", "", ""
 
 
 @app.route("/customer", methods=["GET", "POST"])
