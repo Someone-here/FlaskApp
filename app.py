@@ -55,6 +55,8 @@ cus_name, phone, address1, address2, city, state, country, postal = "", "", "", 
 @app.route("/customer", methods=["GET", "POST"])
 def customer():
     if request.method == "GET":
+        print(request.headers)
+        print("Referer" in request.headers)
         if "Referer" in request.headers:
             return render_template("info.html")
         else:
