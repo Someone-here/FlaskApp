@@ -21,6 +21,8 @@
         <input type="text" name="Address1" /><br />
         <label>Address line 2: </label>
         <input type="text" name="Address2" /><br />
+        <label>Quantity: </label>
+        <input type="number" name="quantity" /><br />
         <label>Phone no: </label>
         <input type="tel" name="phone" /><br />
         <label>City: </label>
@@ -37,27 +39,21 @@
 <script>
   const submit = document.querySelector("input[type=submit]");
   submit.addEventListener("click", () => {
-    var cus_name = document.querySelector("input[name=name]").value;
-    var address1 = document.querySelector("input[name=Address1]").value;
-    var address2 = document.querySelector("input[name=Address2]")
-    var phone = document.querySelector("input[type=tel]").value;
-    var city = document.querySelector("input[name=city]").value;
-    var state = document.querySelector("input[name=state]").value;
-    var country = document.querySelector("input[name=country]").value;
-    var postal = document.querySelector("input[name=postal]").value;
+    var data = document.querySelectorAll("input")
     $.ajax({
       type: "POST",
       contentType: "application/json; charset=utf-8",
       url: "/customer",
       data: JSON.stringify({
-        "cus_name": cus_name, 
-        "address1": address1,
-        "address2": address2,
-        "postal": postal,
-        "phone": phone,
-        "city": city,
-        "state": state,
-        "country": country
+        "cus_name": data[0].value, 
+        "address1": data[1].value,
+        "address2": data[2].value,
+        "quantity": data[3].valueAsNumber,
+        "phone": data[4].value,
+        "city": data[5].value,
+        "postal": data[6].value,
+        "state": data[7].value,
+        "country": data[8].value
       }),
       dataType: "json"
     });

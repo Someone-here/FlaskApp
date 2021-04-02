@@ -1,14 +1,9 @@
-from flask import Flask, redirect, render_template, url_for, request, jsonify, abort
+from flask import Flask, redirect, render_template, url_for, request, jsonify, abort, session
 import stripe
 import yaml
 import json
 from requests import get
 from forex_python.converter import CurrencyRates
-
-name = ""
-price = 0
-currency = "USD"
-stripe.api_key = "sk_test_51IXQeCSJIrO4r1c2upI16Js4ULKmplnErq7W77lEEFxPRDEZqPEgMoz8kFk26Et74gu4LRb7DjE5NOFc8xj5nEkM00hD099iy4"
 
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)
@@ -18,6 +13,8 @@ with open("Currency.json", "r", encoding="utf-8") as f:
 
 images = db["images"]
 app = Flask(__name__)
+app.secret_key = "ng98534uv]\[34k/3tvh3(*&^%$h859!@#$lko[px790f8t98"
+stripe.api_key = "sk_test_51IXQeCSJIrO4r1c2upI16Js4ULKmplnErq7W77lEEFxPRDEZqPEgMoz8kFk26Et74gu4LRb7DjE5NOFc8xj5nEkM00hD099iy4"
 c = CurrencyRates()
 
 types = []
@@ -34,7 +31,6 @@ def home():
 
 @app.route("/Gallery/")
 def gallery():
-    global currency
     ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
     currency = get(f'https://ipapi.co/{ip}/currency/').text
     curr = c.get_rate('INR', currency)
@@ -43,66 +39,75 @@ def gallery():
 
 @app.route("/info", methods=["POST"])
 def info():
-    global name, price
-    name = request.get_json().get('name')
-    price = request.get_json().get('price')
+    session["name"] = request.get_json().get('name')
+    session["price"] = request.get_json().get('price')
+    session["image"] = request.get_json().get("image")
     return ""
-
-
-cus_name, phone, address1, address2, city, state, country, postal = "", "", "", "", "", "", "", ""
 
 
 @app.route("/customer", methods=["GET", "POST"])
 def customer():
     if request.method == "GET":
-        print(request.headers)
-        print("Referer" in request.headers)
         if "Referer" in request.headers:
             return render_template("info.html")
         else:
             abort(404)
     else:
-        global cus_name, phone, address1, address2, postal, city, state, country
-        cus_name, phone, address1, address2, city, state, country, postal = request.get_json().get('cus_name'), request.get_json().get("phone"), request.get_json().get(
-            "address1"), request.get_json().get("address2"), request.get_json().get("city"), request.get_json().get("state"), request.get_json().get("country"), request.get_json().get("postal")
+        data = request.get_json()
+        ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
+        currency = get(f'https://ipapi.co/{ip}/currency/').text
+        cus_info = {
+            "cus_name": data.get("cus_name"),
+            "phone": data.get("phone"),
+            "address1": data.get("address1"),
+            "address2": data.get("address2"),
+            "city": data.get("city"),
+            "state": data.get("state"),
+            "country": data.get("country"),
+            "postal": data.get("postal"),
+            "quantity": data.get("quantity")
+        }
+        session["cus_info"] = cus_info
         return ""
 
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
-    global name, price, currency, cus_name, address1, phone, address2, city, state, postal, country
-    session = stripe.checkout.Session.create(
+    data = session["cus_info"]
+    ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
+    currency = get(f'https://ipapi.co/{ip}/currency/').text
+    Session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         payment_intent_data={
             "shipping": {
-                "name": cus_name,
+                "name": data["cus_name"],
                 "address": {
-                    "line1": address1,
-                    "line2": address2,
-                    "city": city,
-                    "postal_code": postal,
-                    "country": country,
-                    "state": state
+                    "line1": data["address1"],
+                    "line2": data["address2"],
+                    "city": data["city"],
+                    "postal_code": data["postal"],
+                    "country": data["country"],
+                    "state": data["state"]
                 },
-                "phone": phone
+                "phone": data["phone"]
             }
         },
         line_items=[{
             'price_data': {
                 'currency': currency,
                 'product_data': {
-                    'name': name,
-                    'images': [url_for("static", filename="images/bg1.jpg", _external=True)],
+                    'name': session["name"],
+                    'images': [url_for("static", filename=session["image"], _external=True)],
                 },
-                'unit_amount': int(float(price) * 100),
+                'unit_amount': int(float(session["price"]) * 100),
             },
-            'quantity': 1,
+            'quantity': data["quantity"],
         }],
         mode='payment',
         success_url=url_for("gallery", _external=True),
         cancel_url=url_for("gallery", _external=True),
     )
-    return jsonify(id=session.id)
+    return jsonify(id=Session.id)
 
 
 @app.route("/Gallery/<photo>/")

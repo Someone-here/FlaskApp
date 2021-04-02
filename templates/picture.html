@@ -67,7 +67,7 @@
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/info",
-            data: JSON.stringify({"name": "{{name}}", "price": output}),
+            data: JSON.stringify({"name": "{{name}}", "price": output, "image": "{{images['path']}}"}),
             dataType: "json"
           });
         });
