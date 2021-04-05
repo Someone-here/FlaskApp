@@ -1,40 +1,64 @@
 <footer>
-    <p class = "foot1">Contact</p>
-    <p class = "foot2">Stay connected</p>
-    <p class = "coninfo">Shivansh Gupta<a href="https://www.facebook.com/Picss-and-artt-110084744165547" target="_blank" class="facebook"><em class="fa fa-facebook"></em>&nbsp;&nbsp;Facebook</a><br>H-670 Harcharan nagar <a target="_blank" href="https://www.instagram.com/picss.and.art/" class="insta"><em class="fa fa-instagram"></em>&nbsp;&nbsp;Instagram</a><br>Ludhiana, Punjab<a target="_blank" href="https://youtube.com" class="youtube"><em class="fa fa-youtube"></em>&nbsp;&nbsp;Youtube</a><br />India</p>
-    <p class = "coninfo">Tel - +91 9814117680<br>Shivansh.gupta0808@gmail.com</p>
+  <div class="left-info">
+    <span>Contact</span> <br />
+    <p>
+      Shivansh Gupta <br />
+      H-670 Harcharan nagar <br />
+      Ludhiana, Punjab <br />
+      India
+    </p> <br />
+    <p>
+      Tel - +91 9814117680 <br />
+      Shivansh.gupta0808@gmail.com
+    </p>
+  </div>
+  <div style="width: 15rem;"></div>
+  <div class="right-info">
+    <span>Stay connected</span> <br />
+    <p>
+      <a href="https://www.facebook.com/Picss-and-artt-110084744165547" target="_blank" class="facebook">
+        <em class="fa fa-facebook"></em>
+        &nbsp;&nbsp;Facebook
+      </a><br />
+      <a target="_blank" href="https://www.instagram.com/picss.and.art/" class="insta">
+        <em class="fa fa-instagram"></em>
+        &nbsp;&nbsp;Instagram
+      </a><br>
+    </p>
+  </div>
 </footer>
 <style>
     @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
     @import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Nanum+Myeongjo&family=Poiret+One&family=Roboto:wght@100&display=swap');
     footer {
+      padding-top: 5rem;
+      padding-right: 5rem;
       min-width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      display: flex;
       margin-top: 5.75rem;
       background-size: cover;
       height: 25rem;
-      background: url({{ url_for("static", filename="images/Footer.jpg") }});
+      background: url("{{ url_for('static', filename='images/Footer.jpg') }}");
     }
 
-    .foot1 {
+    .left-info, .right-info, p {
+      display: inline-block;
+      line-height: 25px;
+    }
+
+    .left-info span {
       font-size: 2.5rem;
       font-family: "Calibri";
       color: rgb(177, 159, 127);
-      padding-left: 4rem;
       display: inline-block;
-      margin-bottom: 0rem;
-      margin-top: 5rem;
     }
 
-    .foot2 {
-      display: inline;
+    .right-info span {
       color: rgb(177, 159, 127);
       font-size: 1.5rem;
       font-family: "Calibri";
-      margin-left: 14.75em;
-    }
-
-    .facebook {
-      margin-left: 23.5rem;
     }
 
     .facebook,
@@ -48,20 +72,28 @@
       font-weight: 500;
       text-decoration: none; 
     }
-
-    .insta {
-      margin-left: 20rem;
-    }
-
-    .youtube {
-      margin-left: 23rem;
-    }
-
-    .coninfo {
+    .left-info {
       padding-left: 4em;
-      line-height: 28px;
       font-family: "roboto";
       margin-bottom: 2rem;
       color: white;
+    }
+
+    p {
+      margin: 1rem 0rem;
+    }
+
+    @media (max-width: 450px) {
+      .left-info {
+        padding-left: 2em;
+      }
+    }
+    @media (max-width: 360px) {
+      .right-info {
+        margin-left: -2rem;
+      }
+      .left-info {
+        padding-left: 1em;
+      }
     }
 </style>

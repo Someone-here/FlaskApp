@@ -28,52 +28,35 @@ body {
   font-weight: 700;
   font-size: 1.25rem;
   text-align: center;
-  padding-left: 15rem;
-  padding-right: 15rem;
+  padding-left: 25%;
+  padding-right: 25%;
   padding-bottom: 4rem;
   margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  #Adec {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+}
+
+@media (max-width: 460px) {
+  #Adec {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
 }
 
 section {
   text-align: center;
 }
 
-.row {
-  display: flex;
-  height: 80%;
-  border: white solid 1.75rem;
-  padding-bottom: 0%;
-}
-
-.column {
-  padding-right: 0;
-  padding-left: 8%;
-  padding-top: 30px;
-  flex: 25%;
-  background-color: rgb(221, 217, 217);
-  height: 25rem;
-}
-
-.ltext,
-.rtext {
-  font-family: Nanum Myeongjo;
-  margin-top: 25%;
-}
-
-.ltext {
-  margin-left: -46%;
-}
-
-.rtext {
-  margin-right: -8rem;
-  text-align: right;
-}
-
 .check {
-  display: block;
+  display: inline-block;
   margin-top: 1rem;
   transition: all 0.3s;
-  width: 7.5rem;
+  width: 8.5rem;
   font-family: montserrat;
   background-color: black;
   color: white;
@@ -85,10 +68,47 @@ section {
 
 .check:hover {
   background: rgb(104, 95, 95);
+  text-decoration: none;
+  color: white;
 }
 
-iframe {
-  width: 100%;
-  height: 115vh;
-  border: none;
+.row {
+  display: flex;
+  box-sizing: content-box;
+  margin: 0px;
+  border: white solid 1.75rem;
+}
+
+.text,
+.image {
+  background-color: rgb(221, 217, 217);
+  display: flex;
+  align-items: center;
+  height: 25rem;
+}
+
+.text {
+  flex: 2;
+  line-height: normal;
+}
+
+.image {
+  flex: 1;
+  min-width: 40%;
+  justify-content: center;
+}
+
+.ltext,
+.rtext {
+  font-family: Nanum Myeongjo;
+}
+
+.ltext {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.rtext {
+  padding-right: 1rem;
+  text-align: right;
 }

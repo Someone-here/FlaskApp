@@ -16,7 +16,7 @@
 <body>
     {% include "header.jinja" %}
         <label>Name: </label>
-        <input type="text" required name="name" /><br />
+        <input type="text" required name="name" placeholder="name" /><br />
         <label>Shippping address: </label>
         <input type="text" required name="Address1" /><br />
         <label>Address line 2: </label>
@@ -24,11 +24,11 @@
         <label>Quantity: </label>
         <input type="number" required name="quantity" /><br />
         <label>Phone no: </label>
-        <input type="tel" required name="phone" /><br />
+        <input type="tel" required name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '');" /><br />
         <label>City: </label>
         <input type="text" required name="city" /><br />
         <label>Pincode: </label>
-        <input type="text" required name="postal" /><br />
+        <input type="text" required name="postal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '');" /><br />
         <label>State: </label>
         <input type="text" required name="state" /><br />
         <label>Country: </label>
