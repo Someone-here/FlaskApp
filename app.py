@@ -24,6 +24,16 @@ for i in images:
         types.append(images[i]["type"])
 
 
+def get_currency():
+    try:
+        ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
+        currency = get(f'https://ipapi.co/{ip}/currency/').text
+    except:
+        currency = "USD"
+        print("test")
+    return currency
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -31,8 +41,7 @@ def home():
 
 @app.route("/Gallery/")
 def gallery():
-    ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
-    currency = get(f'https://ipapi.co/{ip}/currency/').text
+    currency = get_currency()
     curr = c.get_rate('INR', currency)
     return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
 
@@ -54,8 +63,6 @@ def customer():
             abort(404)
     else:
         data = request.get_json()
-        ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
-        currency = get(f'https://ipapi.co/{ip}/currency/').text
         cus_info = {
             "cus_name": data.get("cus_name"),
             "phone": data.get("phone"),
@@ -74,8 +81,7 @@ def customer():
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     data = session["cus_info"]
-    ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
-    currency = get(f'https://ipapi.co/{ip}/currency/').text
+    currency = get_currency()
     Session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         payment_intent_data={
@@ -112,8 +118,7 @@ def create_checkout_session():
 
 @app.route("/Gallery/<photo>/")
 def product(photo):
-    ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
-    currency = get(f'https://ipapi.co/{ip}/currency/').text
+    currency = get_currency()
     curr = c.get_rate('INR', currency)
     try:
         return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])

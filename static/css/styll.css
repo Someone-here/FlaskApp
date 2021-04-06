@@ -74,6 +74,7 @@ section {
 
 .row {
   display: flex;
+  flex-direction: column;
   box-sizing: content-box;
   margin: 0px;
   border: white solid 1.75rem;
@@ -94,13 +95,14 @@ section {
 
 .image {
   flex: 1;
-  min-width: 40%;
+  min-width: 45%;
   justify-content: center;
 }
 
 .ltext,
 .rtext {
   font-family: Nanum Myeongjo;
+  padding-bottom: 1rem;
 }
 
 .ltext {
@@ -111,4 +113,27 @@ section {
 .rtext {
   padding-right: 1rem;
   text-align: right;
+}
+
+@media (min-width: 500px) {
+  .flip > div:first-child {
+    order: 2;
+  }
+
+  .flip > div:nth-child(2) {
+    order: 1;
+  }
+  .rtext,
+  .ltext {
+    padding-bottom: 1rem;
+  }
+  .row {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 600px) {
+  .d-block {
+    height: 40vh;
+  }
 }
