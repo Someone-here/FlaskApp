@@ -26,4 +26,12 @@ images:
     cm200: 2200
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WhiteFlower."
+  YelloFlower:
+    path: "images/Portfolio/photography/flora/YelloFlower.jpg"
+    potrait: "true"
+    type: Photo
+    cm100: 1300
+    cm150: 2600
+    cm200: 8200
+
   
