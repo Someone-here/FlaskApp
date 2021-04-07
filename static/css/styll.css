@@ -131,9 +131,3 @@ section {
     flex-direction: row;
   }
 }
-
-@media (max-width: 600px) {
-  .d-block {
-    height: 40vh;
-  }
-}
