@@ -19,7 +19,6 @@
     </head>
     <body>
       {% include "header.jinja" %}
-      <div class="test">HI</div>
       <div style="padding: 0rem 1rem">
         {% include "carousel.html" %}
       </div>
@@ -55,8 +54,10 @@
   </body> 
   <script>
     var ua = detect.parse(navigator.userAgent);
-    const test = document.querySelector(".test");
-    console.log(ua.device.family);
-    test.innerHTML = ua.device.family;
+    // const text = document.querySelectorAll(".text");
+    // text.forEach((i) => {
+    //   i.style
+    // });
+    
   </script>
 </html>
