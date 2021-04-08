@@ -34,20 +34,6 @@ body {
   margin-bottom: 0;
 }
 
-@media (max-width: 900px) {
-  #Adec {
-    padding-left: 15%;
-    padding-right: 15%;
-  }
-}
-
-@media (max-width: 460px) {
-  #Adec {
-    padding-left: 7%;
-    padding-right: 7%;
-  }
-}
-
 section {
   text-align: center;
 }
@@ -85,7 +71,6 @@ section {
   background-color: rgb(221, 217, 217);
   display: flex;
   align-items: center;
-  height: 25rem;
 }
 
 .text {
@@ -129,5 +114,27 @@ section {
   }
   .row {
     flex-direction: row;
+  }
+}
+
+@media (max-width: 900px) {
+  #Adec {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+}
+
+@media (max-width: 460px) {
+  #Adec {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+  .text,
+  .image {
+    padding-top: 1rem;
+  }
+  .ltext,
+  .rtext {
+    text-align: center;
   }
 }

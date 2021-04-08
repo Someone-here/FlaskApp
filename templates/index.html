@@ -15,7 +15,7 @@
       <link href="{{ url_for('static', filename='css/styll.css') }}" rel="stylesheet">
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
-      <script src="{{ url_for('static', filename='javascript/detect.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='javascript/detect.js') }}"></script>
     </head>
     <body>
       {% include "header.jinja" %}
@@ -54,6 +54,7 @@
   </body> 
   <script>
     var ua = detect.parse(navigator.userAgent);
+    console.log(ua.device.family);
     // const text = document.querySelectorAll(".text");
     // text.forEach((i) => {
     //   i.style
