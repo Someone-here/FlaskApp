@@ -15,9 +15,11 @@
       <link href="{{ url_for('static', filename='css/styll.css') }}" rel="stylesheet">
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
+      <script src="{{ url_for('static', filename='javascript/detect.min.js') }}"></script>
     </head>
     <body>
       {% include "header.jinja" %}
+      <div class="test">HI</div>
       <div style="padding: 0rem 1rem">
         {% include "carousel.html" %}
       </div>
@@ -51,4 +53,10 @@
       </div>
     {% include "footer.jinja" %}
   </body> 
+  <script>
+    var ua = detect.parse(navigator.userAgent);
+    const test = document.querySelector(".test");
+    console.log(ua.device.family);
+    test.innerHTML = ua.device.family;
+  </script>
 </html>
