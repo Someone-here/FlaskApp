@@ -13,9 +13,9 @@
       <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
       <title>Shivansh</title>
       <link href="{{ url_for('static', filename='css/styll.css') }}" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Poiret+One&family=Nanum+Myeongjo&family=Roboto:wght@100&display=swap" rel="stylesheet">
-      <script src="{{ url_for('static', filename='javascript/detect.js') }}"></script>
     </head>
     <body>
       {% include "header.jinja" %}
@@ -28,37 +28,57 @@
         <h1 id = "About">About</h1>
         <p id = "Adec">Shivansh Gupta is an experienced General Photographer who is passionate about capturing unique moments with their signature style. Shivansh Gupta began their venture into photography in 2016 and soon became obsessed with the fundamentals that make a great photograph: lighting, balance, composition and use of space. Shivansh Gupta captures poignant and profound moments with a creative twist.</p>
       </section>
-      <div class = "row">
-        <div class = "image" style="justify-content: center;">
-          <img src = "{{ url_for('static', filename='images/Bridge_Potrait.jpeg') }}" height="90%" width = "70%">
+      <section class="cards" data-aos="fade-right">
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/ice.jpeg') }}" alt="Bridge_Potrait">
+          <div>
+            <h1>Heading</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nostrum, ipsam rem velit dicta sunt aliquam
+              nesciunt at rerum officia voluptas corrupti, dolores dolore amet?
+            </p>
+            <a href="{{ url_for('gallery')}}" class="check">CHECK IT OUT </strong><span class="arrow">&rarr;</span></a>
+          </div>
         </div>
-        <div class = "text">
-          <div class = "ltext">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur obcaecati nulla ut error perferendis, vitae quos. Sint, laboriosam maiores? Saepe, tempora nihil.<br>
-            <a href = "{{ url_for('gallery')}}" class = "check">CHECK IT OUT</a>
+      </section>
+      <div class="banner"  data-aos="fade-left">
+        <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="banner">
+        <div class="text">
+          <h1>Title</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. Assumenda nemo est <br />fuga ducimus enim distinctio harum <br /> itaque quam quidem. Adipisci?
+          </p> <br />
+          <a href="{{ url_for('gallery')}}" class="check">CHECK IT OUT </strong><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="cards"  data-aos="fade-right">
+        <div class="card second">
+          <img src="{{ url_for('static', filename='images/person.jpeg') }}" alt="Painting_Potrait">
+          <div>
+            <h1>Heading</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti nostrum, ipsam rem velit dicta sunt aliquam
+              nesciunt at rerum officia voluptas corrupti, dolores dolore amet? 
+            </p>
+            <a href="{{ url_for('gallery')}}" class="check">CHECK IT OUT </strong><span class="arrow">&rarr;</span></a>
           </div>
         </div>
       </div>
-      <div class = "row flip">
-        <div class="image" style="z-index: 0;">
-          <img src="{{ url_for('static', filename='images/Painting_Potrait.jpeg') }}" alt="Painting" height="85%" width="70%">
+      <div class="banner sec"  data-aos="fade-left">
+        <img src="{{ url_for('static', filename='images/bg1.jpg') }}" alt="banner">
+        <div class="text">
+          <h1>Title</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. Assumenda nemo est <br />fuga ducimus enim
+            distinctio harum <br /> itaque quam quidem. Adipisci?
+          </p> <br />
+          <a href="{{ url_for('gallery')}}" class="check">CHECK IT OUT </strong><span class="arrow">&rarr;</span></a>
         </div>
-        <div class = "text" style="z-index: 10;">
-          <div class = "rtext">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur obcaecati nulla ut error perferendis, vitae quos. Sint, laboriosam maiores? Saepe, tempora nihil.<br />
-            <a href = "{{ url_for('gallery')}}" class = "check">CHECK IT OUT</a>
-          </div>
         </div>
-      </div>
     {% include "footer.jinja" %}
-  </body> 
-  <script>
-    var ua = detect.parse(navigator.userAgent);
-    console.log(ua.device.family);
-    // const text = document.querySelectorAll(".text");
-    // text.forEach((i) => {
-    //   i.style
-    // });
-    
-  </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({"offset": 300, "duration": 800, "once": false});
+    </script>
+  </body>
 </html>

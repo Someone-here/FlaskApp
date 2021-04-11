@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Encode+Sans+Condensed:wght@300&family=Montserrat:wght@200&family=Nanum+Myeongjo&family=Poiret+One&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap%27");
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap");
 
 nav {
   text-align: center;
@@ -16,6 +18,7 @@ nav li {
 
 body {
   margin: 0rem;
+  overflow-x: hidden;
 }
 
 #About {
@@ -39,82 +42,33 @@ section {
 }
 
 .check {
+  padding: 12px 16px;
+  color: #88744a;
   display: inline-block;
-  margin-top: 1rem;
+  width: 11em;
+  text-align: left;
+  border: solid 1px #88744a;
+  font-size: 1.25em;
+  font-weight: 400;
   transition: all 0.3s;
-  width: 8.5rem;
-  font-family: montserrat;
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 8px 10px;
   text-decoration: none;
-  font-weight: bold;
 }
 
 .check:hover {
-  background: rgb(104, 95, 95);
-  text-decoration: none;
+  background-color: #88744a;
   color: white;
+  text-decoration: none;
 }
 
-.row {
-  display: flex;
-  flex-direction: column;
-  box-sizing: content-box;
-  margin: 0px;
-  border: white solid 1.75rem;
+.arrow {
+  font-size: 2rem;
+  margin: -0.75rem 1rem;
+  font-family: sans-serif;
+  position: absolute;
+  transition: all 0.3s;
 }
-
-.text,
-.image {
-  background-color: rgb(221, 217, 217);
-  display: flex;
-  align-items: center;
-}
-
-.text {
-  flex: 2;
-  line-height: normal;
-}
-
-.image {
-  flex: 1;
-  min-width: 45%;
-  justify-content: center;
-}
-
-.ltext,
-.rtext {
-  font-family: Nanum Myeongjo;
-  padding-bottom: 1rem;
-}
-
-.ltext {
-  text-align: left;
-  padding-left: 1rem;
-}
-
-.rtext {
-  padding-right: 1rem;
-  text-align: right;
-}
-
-@media (min-width: 500px) {
-  .flip > div:first-child {
-    order: 2;
-  }
-
-  .flip > div:nth-child(2) {
-    order: 1;
-  }
-  .rtext,
-  .ltext {
-    padding-bottom: 1rem;
-  }
-  .row {
-    flex-direction: row;
-  }
+.check:hover .arrow {
+  margin: -0.75rem 1.75rem;
 }
 
 @media (max-width: 900px) {
@@ -129,12 +83,73 @@ section {
     padding-left: 7%;
     padding-right: 7%;
   }
-  .text,
-  .image {
-    padding-top: 1rem;
-  }
-  .ltext,
-  .rtext {
-    text-align: center;
-  }
+}
+
+.cards {
+  max-width: 1200px;
+  margin: auto;
+  overflow: auto;
+  padding: 0px 0rem;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1.6fr 0.8fr;
+  background-color: #f9f9f9;
+  gap: 2rem;
+  margin-bottom: 8rem;
+}
+
+.banner {
+  width: 100%;
+  padding: 0px 1rem;
+  margin-bottom: 8rem;
+}
+
+.card p {
+  font-size: 1.2em;
+  font-family: "Lato", serif;
+  line-height: 2rem;
+}
+
+.card div {
+  text-align: left;
+}
+
+.card h1 {
+  color: #88744a;
+  font-size: 3.33em;
+  font-family: "Gothlic A1";
+  margin-top: 5rem;
+}
+
+.banner img {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.text {
+  position: absolute;
+  transform: translateY(-400px);
+  left: 100px;
+  z-index: 2;
+}
+
+.second img {
+  order: 2;
+}
+
+.second {
+  grid-template-columns: 1fr 1.6fr;
+}
+
+.second div {
+  text-align: right;
+  padding-left: 0.5rem;
 }

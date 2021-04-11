@@ -26,11 +26,11 @@ for i in images:
 
 def get_currency():
     try:
-        ip = request.environ.get('HTTP_X_FORWARDED_FOR', "8.8.8.8")
+        ip = request.environ.get(
+            'HTTP_X_FORWARDED_FOR', request.environ['HTTP_X_REAL_IP'])
         currency = get(f'https://ipapi.co/{ip}/currency/').text
     except:
         currency = "USD"
-        print("test")
     return currency
 
 
@@ -58,7 +58,7 @@ def info():
 def customer():
     if request.method == "GET":
         if "Referer" in request.headers:
-            return render_template("info.html")
+            return render_template("customer.html")
         else:
             abort(404)
     else:
@@ -113,6 +113,9 @@ def create_checkout_session():
         success_url=url_for("gallery", _external=True),
         cancel_url=url_for("gallery", _external=True),
     )
+    print(session)
+    session.clear()
+    print(session)
     return jsonify(id=Session.id)
 
 
@@ -123,7 +126,7 @@ def product(photo):
     try:
         return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
     except:
-        return render_template("404.jinja")
+        abort(404)
 
 
 @app.errorhandler(404)
