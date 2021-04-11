@@ -121,7 +121,8 @@ section {
   text-align: left;
 }
 
-.card h1 {
+.card h1,
+.banner h1 {
   color: #88744a;
   font-size: 3.33em;
   font-family: "Gothlic A1";
