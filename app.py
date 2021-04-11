@@ -63,18 +63,7 @@ def customer():
             abort(404)
     else:
         data = request.get_json()
-        cus_info = {
-            "cus_name": data.get("cus_name"),
-            "phone": data.get("phone"),
-            "address1": data.get("address1"),
-            "address2": data.get("address2"),
-            "city": data.get("city"),
-            "state": data.get("state"),
-            "country": data.get("country"),
-            "postal": data.get("postal"),
-            "quantity": data.get("quantity")
-        }
-        session["cus_info"] = cus_info
+        session["cus_info"] = data
         return ""
 
 
@@ -113,9 +102,6 @@ def create_checkout_session():
         success_url=url_for("gallery", _external=True),
         cancel_url=url_for("gallery", _external=True),
     )
-    print(session)
-    session.clear()
-    print(session)
     return jsonify(id=Session.id)
 
 
