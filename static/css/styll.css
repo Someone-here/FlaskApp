@@ -109,6 +109,7 @@ section {
   width: 100%;
   padding: 0px 1rem;
   margin-bottom: 8rem;
+  font-family: "Lato", serif;
 }
 
 .card p {
@@ -118,7 +119,12 @@ section {
 }
 
 .card div {
+  margin-top: 5rem;
   text-align: left;
+}
+
+img {
+  image-resolution: 0.001dpi;
 }
 
 .card h1,
@@ -126,7 +132,6 @@ section {
   color: #88744a;
   font-size: 3.33em;
   font-family: "Gothlic A1";
-  margin-top: 5rem;
 }
 
 .banner img {
