@@ -16,20 +16,21 @@ nav li {
   display: inline;
 }
 
-body {
+body,
+html {
   margin: 0rem;
   overflow-x: hidden;
 }
 
 #About {
   font-family: "Nanum Myeongjo", serif;
-  font-size: 2rem;
+  font-size: 1.2rem;
   padding-top: 2rem;
 }
 #Adec {
+  font-size: 0.7rem;
   font-family: "Roboto";
   font-weight: 700;
-  font-size: 1.25rem;
   text-align: center;
   padding-left: 25%;
   padding-right: 25%;
@@ -75,6 +76,15 @@ section {
   #Adec {
     padding-left: 15%;
     padding-right: 15%;
+  }
+}
+
+@media (min-width: 550px) {
+  #Adec {
+    font-size: 1.25rem;
+  }
+  #About {
+    font-size: 2rem;
   }
 }
 
@@ -156,6 +166,32 @@ img {
 }
 
 .second div {
-  text-align: right;
   padding-left: 0.5rem;
+}
+
+@media (min-width: 700px) {
+  .second div {
+    text-align: right;
+  }
+}
+
+@media (max-width: 700px) {
+  .card {
+    display: block;
+  }
+  .card div {
+    margin-top: 2rem;
+    padding-left: 1rem;
+    padding-bottom: 1.5rem;
+    font-size: 0.8rem;
+  }
+  .card p {
+    line-height: 1.5em;
+  }
+  .card h1 {
+    font-size: 2.75em;
+  }
+  .second div {
+    padding-right: 1rem;
+  }
 }
