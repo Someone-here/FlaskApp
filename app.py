@@ -26,8 +26,7 @@ for i in images:
 
 def get_currency():
     try:
-        ip = request.environ.get(
-            'HTTP_X_FORWARDED_FOR', '8.8.8.8')
+        ip = request.environ['HTTP_X_FORWARDED_FOR']
         currency = get(f'https://ipapi.co/{ip}/currency/').text
     except:
         currency = "USD"
