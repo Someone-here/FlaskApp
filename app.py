@@ -4,7 +4,6 @@ import yaml
 import json
 from requests import get
 from forex_python.converter import CurrencyRates
-from flask_sslify import SSLify
 
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)
@@ -14,7 +13,6 @@ with open("Currency.json", "r", encoding="utf-8") as f:
 
 images = db["images"]
 app = Flask(__name__)
-sslify = SSLify(app, permanent=True)
 app.secret_key = "ng98534uv]\[34k/3tvh3(*&^%$h859!@#$lko[px790f8t98"
 stripe.api_key = "sk_test_51IdTodSIXcXkEUKCWr4dnzUSkjQGhvxGfzlESoMUg6ju3QMtWOnQiWEaLU9A3aessVHsZC5HOWc1hXS8OFemBAi200OoE7GZ2u"
 c = CurrencyRates()
@@ -33,6 +31,14 @@ def get_currency():
     except:
         currency = "USD"
     return currency
+
+
+@app.before_request
+def before_request():
+    if request.url.startswith('http://'):
+        url = request.url.replace('http://', 'https://', 1)
+        code = 301
+        return redirect(url, code=code)
 
 
 @app.route("/")
