@@ -33,12 +33,12 @@ def get_currency():
     return currency
 
 
-@app.before_request
-def before_request():
-    if request.url.startswith('http://'):
-        url = request.url.replace('http://', 'https://', 1)
-        code = 301
-        return redirect(url, code=code)
+# @app.before_request
+# def before_request():
+#     if request.url.startswith('http://'):
+#         url = request.url.replace('http://', 'https://', 1)
+#         code = 301
+#         return redirect(url, code=code)
 
 
 @app.route("/")
@@ -48,9 +48,14 @@ def home():
 
 @app.route("/Gallery/")
 def gallery():
-    currency = get_currency()
-    curr = c.get_rate('INR', currency)
-    return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
+    try:
+        session.pop("cus_info")
+    except:
+        pass
+    finally:
+        currency = get_currency()
+        curr = c.get_rate('INR', currency)
+        return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
 
 
 @app.route("/info", methods=["POST"])
@@ -71,6 +76,8 @@ def customer():
     else:
         data = request.get_json()
         session["cus_info"] = data
+        session.modified = True
+        print(data, session["cus_info"])
         return ""
 
 
@@ -94,6 +101,7 @@ def create_checkout_session():
                 "phone": data["phone"]
             }
         },
+        customer_email=data["email"],
         line_items=[{
             'price_data': {
                 'currency': currency,
@@ -114,12 +122,17 @@ def create_checkout_session():
 
 @app.route("/Gallery/<photo>/")
 def product(photo):
-    currency = get_currency()
-    curr = c.get_rate('INR', currency)
     try:
-        return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
+        session.pop("cus_info")
     except:
-        abort(404)
+        pass
+    finally: 
+        currency = get_currency()
+        curr = c.get_rate('INR', currency)
+        try:
+            return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
+        except:
+            abort(404)
 
 
 @app.errorhandler(404)

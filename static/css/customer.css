@@ -1,3 +1,54 @@
+@font-face {
+  font-family: "Din-2014";
+  src: url("../fonts/DIN2014-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0%;
+}
+
+body {
+  background: #f9f9f9;
+}
+
+label {
+  display: none;
+  position: absolute;
+  font-size: 0.8rem;
+  color: #737373;
+  padding: 10px 1rem;
+  z-index: 10;
+}
+
+.form {
+  transform: translateY(7rem);
+  padding-bottom: 4rem;
+  padding-left: 4rem;
+  font-family: 'din-2014';
+}
+
+input, select {
+  border: 1px solid#d9d9d9;
+  padding: 1.2rem 0.78rem 0.5rem 0.78rem;
+  margin: 0.4rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.info {
+  padding: 1rem 0rem;
+  width: 50%;
+}
+
+.info h1 {
+  margin-bottom: 1rem;
+  color: #88744a;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
 }

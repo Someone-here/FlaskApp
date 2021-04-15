@@ -14,7 +14,7 @@ body {
 }
 .flexContainer {
   display: flex;
-  padding-top: 0.75rem;
+  padding-top: 8.75rem;
   background: #edecec;
 }
 .landscape {

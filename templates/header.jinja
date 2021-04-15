@@ -29,21 +29,31 @@
   }
 
   #logo {
-    width: 8rem;
+    width: 5.5rem;
+    transition: all 0.5s;
+    height: 5rem;
     margin-right: 2rem;
     margin-left: 2rem;
   }
 
   #navbar {
+    z-index: 10;
+    width: 100vw;
+    position: fixed;
     padding-top: 1rem;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding-bottom: 2rem;
     display: flex;
+    transition: all 0.5s;
     background: {{color}};
   }
-  
+  .nav-move {
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    background: white;
+  }
   @media (max-width: 500px) {
     #logo {
       width: 4rem;
@@ -60,3 +70,25 @@
     }
   }
 </style>
+<script>
+    window.onscroll = function () { scrollFunction() };
+    const nav = document.querySelector('#navbar');
+    const logo = document.querySelector('#logo');
+    logo.style.width = '6.5rem';
+    logo.style.height = '5.75rem';
+
+      function scrollFunction()
+      {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50)
+        {
+          nav.classList.add("nav-move");
+          logo.style.width = '5rem';
+          logo.style.height = '4.5rem';
+        } else
+        {
+          nav.classList.remove("nav-move");
+          logo.style.width = '6.5rem';
+          logo.style.height = '5.75rem';
+        }
+      }
+  </script>
