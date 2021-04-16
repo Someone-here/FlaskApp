@@ -63,6 +63,7 @@ def info():
     session["name"] = request.get_json().get('name')
     session["price"] = request.get_json().get('price')
     session["image"] = request.get_json().get("image")
+    session["quantity"] = request.get_json().get("quantity")
     return ""
 
 
@@ -111,7 +112,7 @@ def create_checkout_session():
                 },
                 'unit_amount': int(float(session["price"]) * 100),
             },
-            'quantity': data["quantity"],
+            'quantity': session["quantity"],
         }],
         mode='payment',
         success_url=url_for("gallery", _external=True),

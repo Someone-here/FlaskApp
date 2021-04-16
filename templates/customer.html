@@ -27,9 +27,6 @@
         <label>Apartment, suite, etc. (optional)</label>
         <input type="text" name="Address2" placeholder="Apartment, suite, etc. (optional)"/><br />
 
-        <label>Quantity</label>
-        <input type="number" required name="quantity" placeholder="Quantity"/><br />
-
         <label>Phone no.</label>
         <input type="tel" required name="phone" placeholder="Phone no." oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '');" /><br />
         
@@ -274,6 +271,7 @@
           <option value="TM">Turkmenistan</option>
           <option value="TC">Turks and Caicos Islands</option>
           <option value="TV">Tuvalu</option>
+          <option value="RU">Russian Federation</option>
           <option value="UG">Uganda</option>
           <option value="UA">Ukraine</option>
           <option value="AE">United Arab Emirates</option>
@@ -294,8 +292,7 @@
           <option value="ZW">Zimbabwe</option>
         </select><br />
       </div>
-      <div class="error">Please fill out all the required fields.</div>
-      <input type="submit" value="submit" />
+      <button type="submit" class="pay"><strong>Continue to payment</strong><span class="arrow">&rarr;</span></button>
     </div>
     {% include "footer.jinja" %}
 </body>

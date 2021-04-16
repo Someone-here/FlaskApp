@@ -9,6 +9,10 @@
   margin: 0%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #f9f9f9;
 }
@@ -25,21 +29,28 @@ label {
 .form {
   transform: translateY(7rem);
   padding-bottom: 4rem;
-  padding-left: 4rem;
+  padding-left: 1.5rem;
   font-family: 'din-2014';
 }
 
-input, select {
+select, input:not(input[type=submit]) {
   border: 1px solid#d9d9d9;
   padding: 1.2rem 0.78rem 0.5rem 0.78rem;
   margin: 0.4rem;
-  width: 100%;
+  width: 80%;
   border-radius: 5px;
+}
+
+select {
+  width: 84.5%;
+}
+
+input[type=submit] {
+  padding: 0.5rem 1.25rem;
 }
 
 .info {
   padding: 1rem 0rem;
-  width: 50%;
 }
 
 .info h1 {
@@ -47,8 +58,39 @@ input, select {
   color: #88744a;
 }
 
-.error {
-  color: red;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
+.pay,
+.ADD:visited {
+  padding: 16px 20px;
+  color: #88744a;
+  display: inline-block;
+  width: 16.5em;
+  text-align: left;
+  border: solid 1px #88744a;
+  font-size: 0.9375em;
+  font-weight: 400;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.pay:hover {
+  background-color: #88744a;
+  color: white;
+}
+.arrow {
+  font-size: 1.5rem;
+  margin: -0.45rem 1.5rem;
+  font-family: sans-serif;
+  position: absolute;
+  transition: all 0.3s;
+}
+.pay:hover .arrow {
+  margin: -0.4rem 2.25rem;
+}
+
+@media (min-width: 700px) { 
+  .info {
+    width: 50%;
+  }
+  .form {
+    padding-left: 4rem;
+  }
 }

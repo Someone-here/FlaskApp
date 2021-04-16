@@ -37,6 +37,10 @@
             <option>Size: 150cm</option>
             <option>Size: 200cm</option>
             </select>
+            <div class="sel">
+                <label>Quantity: </label>
+                <input type="number" min="1" max="50" value="1" class="quantity" />
+            </div>
             <h3 class="sel">Frame: Acrylic Mount</h3>
             <a class="ADD" href="/customer"><strong>BUY NOW </strong><span class="arrow">&rarr;</span></a>
             <div class="description">
@@ -48,6 +52,16 @@
     <script>
       const opt = document.querySelector(".sel");
       const price = document.querySelector(".text h2");
+
+      const quantity = document.querySelector(".quantity");
+      quantity.addEventListener('input', () => {
+        quantity.value = quantity.value.replace("-", "")
+      });
+      quantity.addEventListener('focusout', () => {
+          if (quantity.value == "" || quantity.value < 1) {
+              quantity.value = 1
+          }
+      });
       var output = "{{(images['cm100'] * currency)|round(2, 'ceil')}}";
       opt.addEventListener("change", () => {
           if (opt.value == "Size: 100cm") {
@@ -67,7 +81,12 @@
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/info",
-            data: JSON.stringify({"name": "{{name}}", "price": output, "image": "{{images['path']}}"}),
+            data: JSON.stringify({
+                "name": "{{name}}",
+                "price": output,
+                "image": "{{images['path']}}",
+                "quantity": quantity.value
+            }),
             dataType: "json"
           });
         });

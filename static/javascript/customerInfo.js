@@ -1,3 +1,8 @@
+
+function checkEmailValidity (email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
 document.querySelector('select').value = "US";
 const labels = document.querySelectorAll('label');
 
@@ -11,7 +16,6 @@ const inputs = document.querySelectorAll('input');
 inputs.forEach((e) => {
   e.addEventListener('input', () => {
     var selected = document.getElementsByClassName(e.getAttribute("placeholder").replace(":", "").replace(/\s+/g, "").trim());
-    console.log(selected);
     selected[0].style.display = "block";
   });
 
@@ -19,18 +23,23 @@ inputs.forEach((e) => {
   {
     if (e.value === "") {
       var selected = document.getElementsByClassName(e.getAttribute("placeholder").replace(":", "").replace(/\s+/g, "").trim());
-      console.log(selected[0]);
       selected[0].style.display = "none";
     }
   });
 });
 
-const submit = document.querySelector("input[type=submit]");
+const submit = document.querySelector(".pay");
 submit.addEventListener("click", () => {
   var allFilled = true;
   const data = document.querySelectorAll("input[type=text], input[type=tel], input[type=number], select");
+  const email = document.querySelector("input[name=email]")
+  if (!checkEmailValidity(email.value)) {
+    allFilled = false;
+    email.style.borderColor = "red";
+    email.scrollIntoView(false);
+  }
   data.forEach((i) => {
-    if (i.value == "") {
+    if (i.value == "" && i.name != "Address2") {
       i.style.borderColor = "red";
       allFilled = false;
     }
@@ -45,12 +54,11 @@ submit.addEventListener("click", () => {
         "email": data[1].value,
         "address1": data[2].value,
         "address2": data[3].value,
-        "quantity": data[4].valueAsNumber,
-        "phone": data[5].value,
-        "city": data[6].value,
-        "postal": data[7].value,
-        "state": data[8].value,
-        "country": data[9].value
+        "phone": data[4].value,
+        "city": data[5].value,
+        "postal": data[6].value,
+        "state": data[7].value,
+        "country": data[8].value
       }),
       dataType: "json"
     });

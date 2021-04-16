@@ -91,3 +91,20 @@ body {
   margin-top: 2rem;
   padding-right: 0.5rem;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+
+}
+
+
+input {
+  margin-left: 0.2rem;
+  border: 1px solid #d1d1d1;
+  background: #edecec;
+  padding: 0.4rem 0.6rem;
+  width: 20%;
+  border-radius: 5px;
+}

@@ -5,7 +5,6 @@ images:
     type: Wildlife
     cm100: 2500
     cm150: 3000
-    cm200: 3500
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description. This is not on every webpage. It is in the database. This picture is Grape."
   WaterLily:
@@ -14,7 +13,6 @@ images:
     type: Flora
     cm100: 3500
     cm150: 4000
-    cm200: 4300
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WaterLily."
   WhiteFlower:
@@ -23,7 +21,6 @@ images:
     type: Wildlife
     cm100: 1500
     cm150: 2000
-    cm200: 2200
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WhiteFlower."
   YelloFlower:
@@ -32,6 +29,11 @@ images:
     type: Photo
     cm100: 1300
     cm150: 2600
-    cm200: 8200
+  New:
+    path: "images/Portfolio/photography/landscape/Night_scene.JPEG"
+    potrait: "true"
+    type: "Hello"
+    cm100: 1000
+    cm150: 1800
 
   

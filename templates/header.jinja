@@ -19,6 +19,7 @@
 
   #Home a,
   #Gallery a {
+    transition: all 0.4s;
     text-decoration: none;
     color: black;
   }
@@ -50,15 +51,15 @@
     background: {{color}};
   }
   .nav-move {
-    padding-bottom: 10px !important;
-    padding-top: 10px !important;
+    padding-bottom: 5px !important;
+    padding-top: 5px ! important;
     background: white;
   }
   @media (max-width: 500px) {
     #logo {
       width: 4rem;
       height: 3.5rem;
-      margin-left: 1.75em;
+      margin-left: 1.75rem;
       margin-right: 1.75rem;
     }
     #Home,
@@ -70,25 +71,4 @@
     }
   }
 </style>
-<script>
-    window.onscroll = function () { scrollFunction() };
-    const nav = document.querySelector('#navbar');
-    const logo = document.querySelector('#logo');
-    logo.style.width = '6.5rem';
-    logo.style.height = '5.75rem';
-
-      function scrollFunction()
-      {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50)
-        {
-          nav.classList.add("nav-move");
-          logo.style.width = '5rem';
-          logo.style.height = '4.5rem';
-        } else
-        {
-          nav.classList.remove("nav-move");
-          logo.style.width = '6.5rem';
-          logo.style.height = '5.75rem';
-        }
-      }
-  </script>
+<script src="{{ url_for('static', filename='javascript/header.js') }}"></script>

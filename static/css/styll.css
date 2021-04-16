@@ -70,22 +70,6 @@ section {
   }
 }
 
-@media (min-width: 550px) {
-  #Adec {
-    font-size: 1.25rem;
-  }
-  #About {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 460px) {
-  #Adec {
-    padding-left: 7%;
-    padding-right: 7%;
-  }
-}
-
 .cards {
   max-width: 1200px;
   margin: auto;
@@ -160,6 +144,11 @@ img {
   padding-left: 0.5rem;
 }
 
+.carousel-wrap {
+  z-index: 0;
+  margin-top: 7rem;
+}
+
 @media (min-width: 700px) {
   .second div {
     text-align: right;
@@ -184,5 +173,25 @@ img {
   }
   .second div {
     padding-right: 1rem;
+  }
+  .carousel-wrap {
+    margin-top: 5.75rem;
+  }
+}
+
+
+@media (min-width: 550px) {
+  #Adec {
+    font-size: 1.25rem;
+  }
+  #About {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 460px) {
+  #Adec {
+    padding-left: 7%;
+    padding-right: 7%;
   }
 }
