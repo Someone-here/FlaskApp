@@ -32,12 +32,14 @@
                     </a>
                     <h4>{{i}}</h4>
                     <h3>Standard Edition</h3>
-                    <h3 class = "price">{{symbol}} {{(currency * images[i]["cm100"])|round(2, "ceil")}}</h3>
+                    <h3 class = "price">{{symbol}} {{(currency * ((images[i].values() | list)[3]))|round(2, "ceil")}}</h3>
                 </div>
             </div>
         {% endfor %}   
     </div>
     {% include "footer.jinja" %}
 </body>
-<script src="{{ url_for('static', filename='javascript/gallery.js') }}"></script>
+<script>
+    {% include "javascript/gallery.js" %}
+</script>
 </html>

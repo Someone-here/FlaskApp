@@ -30,10 +30,11 @@ label {
   transform: translateY(7rem);
   padding-bottom: 4rem;
   padding-left: 1.5rem;
-  font-family: 'din-2014';
+  font-family: "din-2014";
 }
 
-select, input:not(input[type=submit]) {
+select,
+input:not(input[type="submit"]) {
   border: 1px solid#d9d9d9;
   padding: 1.2rem 0.78rem 0.5rem 0.78rem;
   margin: 0.4rem;
@@ -45,7 +46,7 @@ select {
   width: 84.5%;
 }
 
-input[type=submit] {
+input[type="submit"] {
   padding: 0.5rem 1.25rem;
 }
 
@@ -59,7 +60,8 @@ input[type=submit] {
 }
 
 .pay,
-.ADD:visited {
+.pay:visited {
+  font-family: "din-2014";
   padding: 16px 20px;
   color: #88744a;
   display: inline-block;
@@ -77,16 +79,16 @@ input[type=submit] {
 }
 .arrow {
   font-size: 1.5rem;
-  margin: -0.45rem 1.5rem;
+  margin: -0.3rem 1rem;
   font-family: sans-serif;
   position: absolute;
   transition: all 0.3s;
 }
 .pay:hover .arrow {
-  margin: -0.4rem 2.25rem;
+  margin: -0.3rem 1.75rem;
 }
 
-@media (min-width: 700px) { 
+@media (min-width: 700px) {
   .info {
     width: 50%;
   }

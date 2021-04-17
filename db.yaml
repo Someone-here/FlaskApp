@@ -3,42 +3,37 @@ images:
     path: "images/Portfolio/photography/flora/Grapes.PNG"
     potrait: "true"
     type: Wildlife
-    cm100: 2500
-    cm150: 3000
-    cm200: 3500
+    100CM: 2500
+    170CM: 3000
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description. This is not on every webpage. It is in the database. This picture is Grape."
   WaterLily:
     path: "images/Portfolio/photography/flora/WaterLily.jpg"
     potrait: "false"
     type: Flora
-    cm100: 3500
-    cm150: 4000
-    cm200: 4300
+    100CM: 3500
+    150CM: 4000
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WaterLily."
   WhiteFlower:
     path: "images/Portfolio/photography/flora/WhiteFlower.jpg"
     potrait: "false"
     type: Wildlife
-    cm100: 1500
-    cm150: 2000
-    cm200: 2200
+    100CM: 1500
+    150CM: 2000
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WhiteFlower."
   YelloFlower:
     path: "images/Portfolio/photography/flora/YelloFlower.jpg"
     potrait: "true"
     type: Photo
-    cm100: 1300
-    cm150: 2600
-    cm200: 8200
+    100CM: 1300
+    150CM: 2600
   New:
     path: "images/Portfolio/photography/landscape/Night_scene.JPEG"
     potrait: "true"
     type: "Hello"
-    cm100: 1000
-    cm150: 1800
-    cm200: 2300
+    100CM: 1000
+    150CM: 1800
 
   

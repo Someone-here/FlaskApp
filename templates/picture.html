@@ -31,17 +31,19 @@
         <div class="text">
             <h1>{{name}}</h1>
             <h5><strong>STANDARD EDITION</strong></h5>
-            <h2>{{symbol}} {{(images['cm100'] * currency)|round(2, "ceil")}}</h2>
+            <h2>{{symbol}} {{(currency * ((images.values() | list)[3]))|round(2, "ceil")}}</h2>
             <select class = "sel">
-            <option>Size: 100cm</option>
-            <option>Size: 150cm</option>
-            <option>Size: 200cm</option>
+                {% for i in (images.keys() | list)[3:5] %}
+                <option>Size: {{i}}</option>
+                {% endfor %}
+            </select>
+            <select class="sel">
+                <option>Frame: Acrylic Mount</option>
             </select>
             <div class="sel">
                 <label>Quantity: </label>
                 <input type="number" min="1" max="50" value="1" class="quantity" />
             </div>
-            <h3 class="sel">Frame: Acrylic Mount</h3>
             <a class="ADD" href="/customer"><strong>BUY NOW </strong><span class="arrow">&rarr;</span></a>
             <div class="description">
                 {{ images["description"] }}
@@ -50,46 +52,7 @@
     </div>
     {% include "footer.jinja" %}
     <script>
-      const opt = document.querySelector(".sel");
-      const price = document.querySelector(".text h2");
-
-      const quantity = document.querySelector(".quantity");
-      quantity.addEventListener('input', () => {
-        quantity.value = quantity.value.replace("-", "")
-      });
-      quantity.addEventListener('focusout', () => {
-          if (quantity.value == "" || quantity.value < 1) {
-              quantity.value = 1
-          }
-      });
-      var output = "{{(images['cm100'] * currency)|round(2, 'ceil')}}";
-      opt.addEventListener("change", () => {
-          if (opt.value == "Size: 100cm") {
-              output = "{{(images['cm100'] * currency)|round(2, 'ceil')}}";
-          }
-          else if (opt.value == "Size: 150cm") {
-              output = "{{(images['cm150'] * currency)|round(2, 'ceil')}}";
-          }
-          else {
-              output = "{{(images['cm200'] * currency)|round(2, 'ceil')}}";
-          }
-          price.innerHTML = "{{symbol}}" + " " + output
-        });
-        const buy = document.querySelector(".ADD");
-        buy.addEventListener("click", () => {
-          $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            url: "/info",
-            data: JSON.stringify({
-                "name": "{{name}}",
-                "price": output,
-                "image": "{{images['path']}}",
-                "quantity": quantity.value
-            }),
-            dataType: "json"
-          });
-        });
+      {% include "javascript/picture.js" %}
     </script>
 </body>
 </html>

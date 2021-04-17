@@ -127,13 +127,10 @@ def product(photo):
         session.pop("cus_info")
     except:
         pass
-    finally: 
+    finally:
         currency = get_currency()
         curr = c.get_rate('INR', currency)
-        try:
-            return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
-        except:
-            abort(404)
+        return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
 
 
 @app.errorhandler(404)

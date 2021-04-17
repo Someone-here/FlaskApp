@@ -296,5 +296,7 @@
     </div>
     {% include "footer.jinja" %}
 </body>
-<script src="{{ url_for('static', filename='javascript/customerInfo.js') }}"></script>
+<script>
+  {% include "javascript/customerInfo.js" %}
+</script>
 </html>
