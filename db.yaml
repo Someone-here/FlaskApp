@@ -3,7 +3,7 @@ images:
     path: "images/Portfolio/photography/flora/Grapes.PNG"
     potrait: "true"
     type: Wildlife
-    100CM: 2500
+    "100CM": 2500
     170CM: 3000
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description. This is not on every webpage. It is in the database. This picture is Grape."
