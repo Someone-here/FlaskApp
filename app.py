@@ -13,7 +13,7 @@ with open("Currency.json", "r", encoding="utf-8") as f:
 
 images = db["images"]
 app = Flask(__name__)
-app.secret_key = "ng98534uv]\[34k/3tvh3(*&^%$h859!@#$lko[px790f8t98"
+app.secret_key = "ngU*)({:&^&&9853{>:()*I:>4uv]\}:{>[34k/3tvh3(*&^%$h859!@#$lko[px790f8t98"
 stripe.api_key = "sk_test_51IdTodSIXcXkEUKCWr4dnzUSkjQGhvxGfzlESoMUg6ju3QMtWOnQiWEaLU9A3aessVHsZC5HOWc1hXS8OFemBAi200OoE7GZ2u"
 c = CurrencyRates()
 
@@ -49,7 +49,8 @@ def home():
 @app.route("/Gallery/")
 def gallery():
     try:
-        session.pop("cus_info")
+        session.pop("cus_info", None)
+        session.clear()
     except:
         pass
     finally:
@@ -60,35 +61,63 @@ def gallery():
 
 @app.route("/info", methods=["POST"])
 def info():
-    session["name"] = request.get_json().get('name')
-    session["price"] = request.get_json().get('price')
-    session["image"] = request.get_json().get("image")
-    session["quantity"] = request.get_json().get("quantity")
+    currency = get_currency()
+    curr = c.get_rate('INR', currency)
+    if request.get_json().get("request") == "setup":
+        print(request.get_json())
+        if request.get_json().get('name') in images:
+            session["name"] = request.get_json().get('name')
+            session["image"] = request.get_json().get("image")
+        else:
+            return None
+    if request.get_json().get("request") == "Variants":
+        session["quantity"] = request.get_json().get("quantity")
+        if request.get_json().get("frame") in images[session["name"]]:
+            session["frame"] = request.get_json().get("frame")
+        if request.get_json().get("size") in images[session["name"]][session["frame"]]:
+            session["size"] = request.get_json().get("size")
+
+        output = round(images[session["name"]]
+                       [session["frame"]][session["size"]] * curr, 2)
+        session["price"] = output
+        return {"price": output}
+
     return ""
 
 
 @app.route("/customer", methods=["GET", "POST"])
 def customer():
+    print(session)
     if request.method == "GET":
         if "Referer" in request.headers:
             return render_template("customer.html")
         else:
             abort(404)
     else:
-        data = request.get_json()
-        session["cus_info"] = data
-        session.modified = True
-        print(data, session["cus_info"])
-        return ""
+        try:
+            session.pop("cus_info", None)
+        except:
+            pass
+        finally:
+            data = request.get_json()
+            session["cus_info"] = data
+            session.modified = True
+            return ""
 
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
+    session.modified = True
+    print(session)
     data = session["cus_info"]
     currency = get_currency()
     Session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         payment_intent_data={
+            "metadata": {
+                "Frame": session["frame"],
+                "Size": session["size"]
+            },
             "shipping": {
                 "name": data["cus_name"],
                 "address": {
@@ -103,6 +132,10 @@ def create_checkout_session():
             }
         },
         customer_email=data["email"],
+        metadata={
+            "Frame": session["frame"],
+            "Size": session["size"]
+        },
         line_items=[{
             'price_data': {
                 'currency': currency,
@@ -124,13 +157,17 @@ def create_checkout_session():
 @app.route("/Gallery/<photo>/")
 def product(photo):
     try:
-        session.pop("cus_info")
+        session.pop("cus_info", None)
+        session.clear()
     except:
         pass
     finally:
         currency = get_currency()
         curr = c.get_rate('INR', currency)
-        return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
+        try:
+            return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
+        except:
+            abort(404)
 
 
 @app.errorhandler(404)

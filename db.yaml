@@ -3,37 +3,57 @@ images:
     path: "images/Portfolio/photography/flora/Grapes.PNG"
     potrait: "true"
     type: Wildlife
-    "100CM": 2500
-    170CM: 3000
+    "Acrylic Mount":
+      100CM: 2500
+      170CM: 3000
+    "Other Mount":
+      100CM: 1500
+      170CM: 2000
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description. This is not on every webpage. It is in the database. This picture is Grape."
   WaterLily:
     path: "images/Portfolio/photography/flora/WaterLily.jpg"
     potrait: "false"
     type: Flora
-    100CM: 3500
-    150CM: 4000
+    "Acrylic Mount":
+      100CM: 2500
+      170CM: 3000
+    "Other Mount":
+      100CM: 1500
+      170CM: 2000
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WaterLily."
   WhiteFlower:
     path: "images/Portfolio/photography/flora/WhiteFlower.jpg"
     potrait: "false"
     type: Wildlife
-    100CM: 1500
-    150CM: 2000
+    "Acrylic Mount":
+      100CM: 2500
+      170CM: 3000
+    "Other Mount":
+      100CM: 1500
+      170CM: 2000
     description: 
       "Hello this is a picture taken by me, I am a profession photographer. This me talking about myself. No this is just a test. This is not a real description This is not on every webpage. It is in the database. This picture is WhiteFlower."
   YelloFlower:
     path: "images/Portfolio/photography/flora/YelloFlower.jpg"
     potrait: "true"
     type: Photo
-    100CM: 1300
-    150CM: 2600
+    "Acrylic Mount":
+      100CM: 2500
+      170CM: 3000
+    "Other Mount":
+      100CM: 1500
+      170CM: 2000
   New:
     path: "images/Portfolio/photography/landscape/Night_scene.JPEG"
     potrait: "true"
     type: "Hello"
-    100CM: 1000
-    150CM: 1800
+    "Acrylic Mount":
+      100CM: 2500
+      170CM: 3000
+    "Other Mount":
+      100CM: 1500
+      170CM: 2000
 
   
