@@ -3,9 +3,11 @@ const price = document.querySelector(".text h2");
 const frame = document.querySelector("#frame");
 
 const quantity = document.querySelector(".quantity");
+
 quantity.addEventListener("input", () => {
   quantity.value = quantity.value.replace(".", "");
 });
+
 quantity.addEventListener("focusout", () => {
   if (
     quantity.value == "" ||
