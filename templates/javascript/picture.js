@@ -55,7 +55,6 @@ function sendInfo() {
 document.querySelectorAll("select, .quantity").forEach((i) => {
   i.addEventListener("change", () => {
     sendInfo().then((output) => {
-      console.log(output);
       price.innerHTML = "{{symbol}}" + " " + output.toString();
     });
   });

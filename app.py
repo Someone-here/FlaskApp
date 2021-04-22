@@ -64,7 +64,6 @@ def info():
     currency = get_currency()
     curr = c.get_rate('INR', currency)
     if request.get_json().get("request") == "setup":
-        print(request.get_json())
         if request.get_json().get('name') in images:
             session["name"] = request.get_json().get('name')
             session["image"] = request.get_json().get("image")
@@ -87,7 +86,6 @@ def info():
 
 @app.route("/customer", methods=["GET", "POST"])
 def customer():
-    print(session)
     if request.method == "GET":
         if "Referer" in request.headers:
             return render_template("customer.html")
@@ -108,7 +106,6 @@ def customer():
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     session.modified = True
-    print(session)
     data = session["cus_info"]
     currency = get_currency()
     Session = stripe.checkout.Session.create(
