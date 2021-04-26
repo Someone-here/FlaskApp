@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@300&');
+       body {
+        font-family: "Encode Sans Condensed";
+        margin: 0px;
+        }
+        .middle {
+            padding-top: 7rem;
+            width: 67rem;
+            height: 80vh;
+            margin: 0px auto;
+            box-sizing: border-box;
+            letter-spacing: 2px;
+        }
+        .middle h1 {
+            border-bottom: solid 1px #d8d8d6;
+            padding: 2rem 0rem;
+            color: #88744a;
+            font-size: 3rem;
+        }
+        .middle a {
+            color: #88744a;
+            text-decoration: none;
+        }
+        .middle a:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    
+    {% include "header.jinja" %}
+    
+        <div class="middle">
+            <h1>Thank You for shopping with us</h1>
+            <h3>Click <a href="{{ url_for('gallery') }}">here</a> to continue shopping</h3>
+        </div>
+    {% include "footer.jinja" %}
+</body>
+</html>
