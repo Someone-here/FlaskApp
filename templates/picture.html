@@ -32,16 +32,18 @@
             <h1>{{name}}</h1>
             <h5><strong>STANDARD EDITION</strong></h5>
             <h2>{{symbol}} {{(currency * (((images.values() | list)[3].values() | list)[0]))|round(2, "ceil")}}</h2>
-            <select class = "sel" id = "size">
-                {% for i in (images.values() | list)[3] %}
-                <option>Size: {{i}}</option>
-                {% endfor %}
-            </select>
-            <select class="sel" id="frame">
-                {% for i in (images.keys() | list)[3:5] %}
-                <option>Frame: {{i}}</option>
-                {% endfor %}
-            </select>
+            {% if images["type"] != "Painting" %}
+                <select class = "sel" id = "size">
+                    {% for i in (images.values() | list)[3] %}
+                    <option>Size: {{i}}</option>
+                    {% endfor %}
+                </select>
+                <select class="sel" id="frame">
+                    {% for i in (images.keys() | list)[3:5] %}
+                    <option>Frame: {{i}}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
             <div class="sel" id = "quantity">
                 <label>Quantity: </label>
                 <input type="number" min="1" max="50" value="1" class="quantity" />

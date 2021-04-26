@@ -38,7 +38,7 @@ images:
   YelloFlower:
     path: "images/Portfolio/photography/flora/YelloFlower.jpg"
     potrait: "true"
-    type: Photo
+    type: Painting
     "Acrylic Mount":
       100CM: 2500
       170CM: 3000

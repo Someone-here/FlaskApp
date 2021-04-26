@@ -30,7 +30,7 @@ $.ajax({
   dataType: "json",
 });
 
-function sendInfo() {
+function sendInfoFull() {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: "POST",
@@ -52,17 +52,45 @@ function sendInfo() {
   });
 }
 
+function sendInfo() {
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      url: "/info",
+      data: JSON.stringify({
+        request: "Variants",
+        name: "{{name}}",
+        quantity: quantity.value,
+      }),
+      success: (response) => {
+        output = response["price"];
+        resolve(output);
+      },
+      dataType: "json",
+    });
+  });
+}
+
 document.querySelectorAll("select, .quantity").forEach((i) => {
   i.addEventListener("change", () => {
-    sendInfo().then((output) => {
-      price.innerHTML = "{{symbol}}" + " " + output.toString();
-    });
+    if ("{{images['type']}}" != "Painting") {
+      sendInfoFull().then((output) => {
+        price.innerHTML = "{{symbol}}" + " " + output.toString();
+      });
+    }
   });
 });
 
 const buy = document.querySelector(".ADD");
 buy.addEventListener("click", () => {
-  sendInfo().then((output) => {
-    window.location.href = "/customer";
-  });
+  if ("{{images['type']}}" != "Painting") {
+    sendInfoFull().then((output) => {
+      window.location.href = "{{ url_for('customer') }}";
+    });
+  } else {
+    sendInfo().then((output) => {
+      window.location.href = "{{ url_for('customer') }}";
+    });
+  }
 });

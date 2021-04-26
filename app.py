@@ -13,7 +13,7 @@ with open("Currency.json", "r", encoding="utf-8") as f:
 
 images = db["images"]
 app = Flask(__name__)
-app.secret_key = "ngU*)({:&^&&9853{>:()*I:>4uv]\}:{>[34k/3tvh3(*&^%$h859!@#$lko[px790f8t98"
+app.secret_key = "ngU*)({:&^&&9]853{>:()*I:>43u%v]\}:{__vr_>[34k%/673t{}[[[vh3(*&^%$h3$_54_43__859!@#$l=#+333ko[px790f8t98"
 stripe.api_key = "sk_test_51IdTodSIXcXkEUKCWr4dnzUSkjQGhvxGfzlESoMUg6ju3QMtWOnQiWEaLU9A3aessVHsZC5HOWc1hXS8OFemBAi200OoE7GZ2u"
 c = CurrencyRates()
 
@@ -67,14 +67,25 @@ def info():
         if request.get_json().get('name') in images:
             session["name"] = request.get_json().get('name')
             session["image"] = request.get_json().get("image")
+            print(session["name"], session["image"])
+            session.modified = True
         else:
-            return None
+            return "Stop it"
     if request.get_json().get("request") == "Variants":
-        session["quantity"] = request.get_json().get("quantity")
+        if not session.get("name"):
+            abort(404)
+        if type(request.get_json().get("quantity")) == int:
+            session["quantity"] = request.get_json().get("quantity")
+        else:
+            session["quantity"] = 1
         if request.get_json().get("frame") in images[session["name"]]:
             session["frame"] = request.get_json().get("frame")
+        else:
+            session["frame"] = list(images["Grapes"])[3]
         if request.get_json().get("size") in images[session["name"]][session["frame"]]:
             session["size"] = request.get_json().get("size")
+        else:
+            session["size"] = list(list(images["Grapes"].values())[3])[0]
 
         output = round(images[session["name"]]
                        [session["frame"]][session["size"]] * curr, 2)
@@ -146,7 +157,7 @@ def create_checkout_session():
         }],
         mode='payment',
         success_url=url_for("gallery", _external=True),
-        cancel_url=url_for("gallery", _external=True),
+        cancel_url=url_for("thanks", _external=True, auth="f3423rnjkr3o"),
     )
     return jsonify(id=Session.id)
 
@@ -165,6 +176,14 @@ def product(photo):
             return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
         except:
             abort(404)
+
+
+@app.route("/thankyou/")
+def thanks():
+    if request.args.get("auth") == "f3423rnjkr3o":
+        return render_template("Thanks.jinja")
+    else:
+        abort(404)
 
 
 @app.errorhandler(404)
