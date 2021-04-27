@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel = "icon" href = "{{ url_for('static', filename='logo.png') }}">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/picture.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+  <head>
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/picture.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>{{name}}</title>
     <style>
-        .landscape {
-            flex: 75%;
-            {% if images['potrait'] == "true" %}
-            padding: 0px 5rem;
-            {% else %}
-            padding: 0px 1rem;
-            {% endif %}
-        }
+      .landscape {
+          flex: 75%;
+          {% if images['potrait'] == "true" %}
+          padding: 0px 5rem;
+          {% else %}
+          padding: 0px 1rem;
+          {% endif %}
+      }
     </style>
-</head>
-<body>
-    {% with color="#EDECEC" %}
-    {% include "header.jinja" %}
-    {% endwith %}
+  </head>
+  <body>
+    {% with color="#EDECEC" %} {% include "header.jinja" %} {% endwith %}
     <div class="flexContainer">
-        <div class="landscape">
-            <img src="{{ url_for('static', filename=images['path']) }}" alt="main_image" width="100%" height="92.5%">
+      <div class="landscape">
+        <img
+          src="{{ url_for('static', filename=images['path']) }}"
+          alt="main_image"
+          width="100%"
+          height="92.5%"
+        />
+      </div>
+      <div class="text">
+        <h1>{{name}}</h1>
+        <h5><strong>STANDARD EDITION</strong></h5>
+        <h2>
+          {{symbol}} {{(currency * (((images.values() | list)[3].values() |
+          list)[0]))|round(2, "ceil")}}
+        </h2>
+        {% if images["type"] != "Painting" %}
+        <select class="sel" id="size">
+          {% for i in (images.values() | list)[3] %}
+          <option>Size: {{i}}</option>
+          {% endfor %}
+        </select>
+        <select class="sel" id="frame">
+          {% for i in (images.keys() | list)[3:5] %}
+          <option>Frame: {{i}}</option>
+          {% endfor %}
+        </select>
+        {% endif %}
+        <div class="sel" id="quantity">
+          <label>Quantity: </label>
+          <input type="number" min="1" max="50" value="1" class="quantity" />
         </div>
-        <div class="text">
-            <h1>{{name}}</h1>
-            <h5><strong>STANDARD EDITION</strong></h5>
-            <h2>{{symbol}} {{(currency * (((images.values() | list)[3].values() | list)[0]))|round(2, "ceil")}}</h2>
-            {% if images["type"] != "Painting" %}
-                <select class = "sel" id = "size">
-                    {% for i in (images.values() | list)[3] %}
-                    <option>Size: {{i}}</option>
-                    {% endfor %}
-                </select>
-                <select class="sel" id="frame">
-                    {% for i in (images.keys() | list)[3:5] %}
-                    <option>Frame: {{i}}</option>
-                    {% endfor %}
-                </select>
-            {% endif %}
-            <div class="sel" id = "quantity">
-                <label>Quantity: </label>
-                <input type="number" min="1" max="50" value="1" class="quantity" />
-            </div>
-            <button class="ADD" href="/customer"><strong>BUY NOW </strong><span class="arrow">&rarr;</span></button>
-            <div class="description">
-                {{ images["description"] }}
-            </div>
-        </div>
+        <button class="ADD" href="/customer">
+          <strong>BUY NOW </strong><span class="arrow">&rarr;</span>
+        </button>
+        <div class="description">{{ images["description"] }}</div>
+      </div>
     </div>
     {% include "footer.jinja" %}
     <script>
       {% include "javascript/picture.js" %}
     </script>
-</body>
+  </body>
 </html>

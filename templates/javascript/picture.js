@@ -39,7 +39,7 @@ function sendInfoFull() {
       data: JSON.stringify({
         request: "Variants",
         name: "{{name}}",
-        quantity: quantity.value,
+        quantity: quantity.valueAsNumber,
         size: opt.value.split(": ")[1],
         frame: frame.value.split(": ")[1],
       }),
@@ -61,7 +61,7 @@ function sendInfo() {
       data: JSON.stringify({
         request: "Variants",
         name: "{{name}}",
-        quantity: quantity.value,
+        quantity: quantity.valueAsNumber,
       }),
       success: (response) => {
         output = response["price"];

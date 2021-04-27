@@ -41,10 +41,6 @@ images:
     type: Painting
     "Acrylic Mount":
       100CM: 2500
-      170CM: 3000
-    "Other Mount":
-      100CM: 1500
-      170CM: 2000
   New:
     path: "images/Portfolio/photography/landscape/Night_scene.JPEG"
     potrait: "true"
