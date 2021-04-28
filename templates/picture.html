@@ -44,7 +44,6 @@
           {{symbol}} {{(currency * (((images.values() | list)[3].values() |
           list)[0]))|round(2, "ceil")}}
         </h2>
-        {% if images["type"] != "Painting" %}
         <select class="sel" id="size">
           {% for i in (images.values() | list)[3] %}
           <option>Size: {{i}}</option>
@@ -55,11 +54,12 @@
           <option>Frame: {{i}}</option>
           {% endfor %}
         </select>
-        {% endif %}
+        {% if images["type"] != "Painting" %}
         <div class="sel" id="quantity">
           <label>Quantity: </label>
           <input type="number" min="1" max="50" value="1" class="quantity" />
         </div>
+        {% endif %}
         <button class="ADD" href="/customer">
           <strong>BUY NOW </strong><span class="arrow">&rarr;</span>
         </button>
