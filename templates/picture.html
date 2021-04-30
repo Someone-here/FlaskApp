@@ -9,21 +9,31 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/picture.css') }}"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>{{name}}</title>
     <style>
+      {% if images['potrait'] == "true" %}
       .landscape {
-          flex: 75%;
-          {% if images['potrait'] == "true" %}
-          padding: 0px 5rem;
-          {% else %}
-          padding: 0px 1rem;
-          {% endif %}
+            flex: 75%;
+            padding: 0px 5vw;
+        }
+      {% else %}
+      .landscape {
+            flex: 75%;
+            padding: 0px 1vw;
+        }
+
+      @media (max-width: 800px) {
+        .landscape {
+          max-width: fit-content;
+          padding: 0rem 1rem 1rem 1rem;
+        }
+
+        .flexContainer {
+          padding-top: 6rem;
+        }
       }
+      {% endif %}
     </style>
   </head>
   <body>
@@ -49,6 +59,7 @@
           <option>Size: {{i}}</option>
           {% endfor %}
         </select>
+        <br />
         <select class="sel" id="frame">
           {% for i in (images.keys() | list)[3:5] %}
           <option>Frame: {{i}}</option>

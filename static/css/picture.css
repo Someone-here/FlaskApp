@@ -4,7 +4,7 @@
   font-weight: normal;
   font-style: normal;
 }
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
 * {
   box-sizing: border-box;
   margin: 0rem;
@@ -15,16 +15,19 @@ body {
 .flexContainer {
   display: flex;
   padding-top: 8.75rem;
+  flex-wrap: wrap;
   background: #edecec;
 }
+
 .landscape {
   flex: 75%;
+  max-width: 60vw;
   padding: 0px 5rem;
 }
 .text {
   flex: 30%;
   font-weight: bold;
-  margin-left: 3.5rem;
+  margin: 0px 1.5rem 1rem 3.5rem;
 }
 .text h1 {
   color: #88744a;
