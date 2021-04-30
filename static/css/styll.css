@@ -108,14 +108,10 @@ section {
   text-align: left;
 }
 
-img {
-  image-resolution: 0.001dpi;
-}
-
 .card h1,
 .banner h1 {
   color: #88744a;
-  font-size: 3.33em;
+  font-size: 3.33vw;
   font-family: "Gothlic A1";
 }
 
