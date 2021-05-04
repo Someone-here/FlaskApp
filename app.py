@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, url_for, request, jsonify, abort, session
 import stripe
 import yaml
+import math
 import json
 from requests import get
 from forex_python.converter import CurrencyRates
@@ -87,8 +88,8 @@ def info():
         else:
             session["size"] = list(list(images["Grapes"].values())[3])[0]
 
-        output = round(images[session["name"]]
-                       [session["frame"]][session["size"]] * curr, 2)
+        output = (math.ceil((images[session["name"]]
+                       [session["frame"]][session["size"]] * curr) * 100)/100)
         session["price"] = output
         return {"price": output}
 
