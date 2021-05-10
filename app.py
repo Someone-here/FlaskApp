@@ -157,8 +157,8 @@ def create_checkout_session():
             'quantity': session["quantity"],
         }],
         mode='payment',
-        success_url=url_for("gallery", _external=True),
-        cancel_url=url_for("thanks", _external=True, auth="f3423rnjkr3o"),
+        success_url=url_for("thanks", _external=True, auth="f3423rnjkr3o"),
+        cancel_url=url_for("gallery",  _external=True),
     )
     return jsonify(id=Session.id)
 

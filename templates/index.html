@@ -39,10 +39,9 @@
           </div>
         </div>
       </section>
-      <div class="banner" data-aos="fade-left">
-        <img src="{{ url_for('static', filename='images/Banner.jpg') }}" alt="banner">
+      <div class="banner" data-aos="fade-left" style="background: url({{url_for('static', filename='images/Banner.jpg')}});">
         <div class="text">
-          <h1>Title</h1>
+          <h1>Title</h1> <br />
           <p>
             Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. Assumenda nemo est <br />fuga ducimus enim distinctio harum <br /> itaque quam quidem. Adipisci?
           </p> <br />
@@ -62,8 +61,7 @@
           </div>
         </div>
       </div>
-      <div class="banner sec"  data-aos="fade-left">
-        <img src="{{ url_for('static', filename='images/Bridge_banner.jpeg') }}" alt="banner">
+      <div class="banner sec"  data-aos="fade-left" style="background: url({{url_for('static', filename='images/Bridge_banner_mobile.jpg')}});">
         <div class="text">
           <h1>Title</h1>
           <p>
