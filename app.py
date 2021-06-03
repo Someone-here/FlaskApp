@@ -3,10 +3,8 @@ import stripe
 import yaml
 import math
 import json
-import urllib3
+from requests import get
 from scrapy.selector import Selector
-
-http = urllib3.PoolManager()
 
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)
@@ -21,12 +19,9 @@ stripe.api_key = "sk_test_51IdTodSIXcXkEUKCWr4dnzUSkjQGhvxGfzlESoMUg6ju3QMtWOnQi
 
 
 def get_rate(cur1, cur2):
-    r = http.request(
-        'GET', f'https://www.google.com/finance/quote/{cur1}-{cur2}')
+    r = get(f'https://www.google.com/finance/quote/{cur1}-{cur2}')
 
-    print(r.status)
-
-    return float(Selector(text=r.data).css(".fxKbKc::text").get())
+    return float(Selector(text=r.text).css(".fxKbKc::text").get())
 
 
 types = []
