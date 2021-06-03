@@ -19,13 +19,16 @@ app = Flask(__name__)
 app.secret_key = "ngU*)({:&^&&9]853{>:()*I:>43u%v]\}:{__vr_>[34k%/673t{}[[[vh3(*&^%$h3$_54_43__859!@#$l=#+333ko[px790f8t98"
 stripe.api_key = "sk_test_51IdTodSIXcXkEUKCWr4dnzUSkjQGhvxGfzlESoMUg6ju3QMtWOnQiWEaLU9A3aessVHsZC5HOWc1hXS8OFemBAi200OoE7GZ2u"
 
+
 def get_rate(cur1, cur2):
-    r = http.request('GET', f'https://www.google.com/finance/quote/{cur1}-{cur2}').data
-    soup = BeautifulSoup(r, features="html.parser")
-    
-    print(soup, str(r)[0: 25])
-    print(soup.select("div.YMlKec.fxKbKc").text)
+    r = http.request(
+        'GET', f'https://www.google.com/finance/quote/{cur1}-{cur2}')
+
+    print(r.status)
+    soup = BeautifulSoup(r.data, features="html.parser")
+    print(str(soup)[0:200])
     return float(soup.select("div.YMlKec.fxKbKc")[0].text)
+
 
 types = []
 types.append("All")
@@ -98,7 +101,7 @@ def info():
             session["size"] = list(list(images["Grapes"].values())[3])[0]
 
         output = (math.ceil((images[session["name"]]
-                       [session["frame"]][session["size"]] * curr) * 100)/100)
+                             [session["frame"]][session["size"]] * curr) * 100)/100)
         session["price"] = output
         return {"price": output}
 
