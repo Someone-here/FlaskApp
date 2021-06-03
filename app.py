@@ -27,7 +27,7 @@ def get_rate(cur1, cur2):
     print(r.status)
     soup = BeautifulSoup(r.data, features="html.parser")
     print(str(soup)[0:200])
-    return float(soup.select("div.YMlKec.fxKbKc")[0].text)
+    return float(soup.find_all("div", class_="fxKbKc")[0].text)
 
 
 types = []
