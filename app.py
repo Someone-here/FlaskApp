@@ -4,7 +4,7 @@ import yaml
 import math
 import json
 import urllib3
-from bs4 import BeautifulSoup
+from scrapy.selector import Selector
 
 http = urllib3.PoolManager()
 
@@ -25,9 +25,8 @@ def get_rate(cur1, cur2):
         'GET', f'https://www.google.com/finance/quote/{cur1}-{cur2}')
 
     print(r.status)
-    soup = BeautifulSoup(r.data, features="html.parser")
-    print(str(soup).find("fxKbKc"))
-    return float(soup.find("div", class_="fxKbKc").text)
+
+    return float(Selector(text=r.data).css(".fxKbKc::text").get())
 
 
 types = []
