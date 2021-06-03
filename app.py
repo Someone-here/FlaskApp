@@ -3,8 +3,10 @@ import stripe
 import yaml
 import math
 import json
-from requests import get
-from forex_python.converter import CurrencyRates
+import urllib3
+from bs4 import BeautifulSoup
+
+http = urllib3.PoolManager()
 
 with open("db.yaml", "r") as y:
     db = yaml.load(y, yaml.FullLoader)
@@ -16,7 +18,12 @@ images = db["images"]
 app = Flask(__name__)
 app.secret_key = "ngU*)({:&^&&9]853{>:()*I:>43u%v]\}:{__vr_>[34k%/673t{}[[[vh3(*&^%$h3$_54_43__859!@#$l=#+333ko[px790f8t98"
 stripe.api_key = "sk_test_51IdTodSIXcXkEUKCWr4dnzUSkjQGhvxGfzlESoMUg6ju3QMtWOnQiWEaLU9A3aessVHsZC5HOWc1hXS8OFemBAi200OoE7GZ2u"
-c = CurrencyRates()
+
+def get_rate(cur1, cur2):
+    r = http.request('GET', f'https://www.google.com/finance/quote/{cur1}-{cur2}').data
+    soup = BeautifulSoup(r, features="html.parser")
+    
+    return float(soup.select("div.YMlKec.fxKbKc")[0].text)
 
 types = []
 types.append("All")
@@ -28,7 +35,7 @@ for i in images:
 def get_currency():
     try:
         ip = request.environ['HTTP_X_FORWARDED_FOR']
-        currency = get(f'https://ipapi.co/{ip}/currency/').text
+        currency = http.request('GET', f'https://ipapi.co/{ip}/currency/').data
     except:
         currency = "USD"
     return currency
@@ -56,14 +63,14 @@ def gallery():
         pass
     finally:
         currency = get_currency()
-        curr = c.get_rate('INR', currency)
+        curr = get_rate('INR', currency)
         return render_template("photos.html", images=images, types=types, currency=curr, symbol=f[currency]["symbol"])
 
 
 @app.route("/info", methods=["POST"])
 def info():
     currency = get_currency()
-    curr = c.get_rate('INR', currency)
+    curr = get_rate('INR', currency)
     if request.get_json().get("request") == "setup":
         if request.get_json().get('name') in images:
             session["name"] = request.get_json().get('name')
@@ -172,7 +179,7 @@ def product(photo):
         pass
     finally:
         currency = get_currency()
-        curr = c.get_rate('INR', currency)
+        curr = get_rate('INR', currency)
         try:
             return render_template("picture.html", images=images[photo], name=photo, currency=curr, symbol=f[currency]["symbol"])
         except:
