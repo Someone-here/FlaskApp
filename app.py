@@ -23,6 +23,7 @@ def get_rate(cur1, cur2):
     r = http.request('GET', f'https://www.google.com/finance/quote/{cur1}-{cur2}').data
     soup = BeautifulSoup(r, features="html.parser")
     
+    print(soup.select("div.YMlKec.fxKbKc"), type(soup.select("div.YMlKec.fxKbKc")))
     return float(soup.select("div.YMlKec.fxKbKc")[0].text)
 
 types = []
